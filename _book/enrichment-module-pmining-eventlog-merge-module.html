@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Enrichment Module: “pMining: EventLog Merge Module” | pMinShiny: user guide</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Enrichment Module: “pMining: EventLog Merge Module” | pMinShiny: user guide" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Enrichment Module: “pMining: EventLog Merge Module” | pMinShiny: user guide" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="PM liquid lab" />
+
+
+<meta name="date" content="2022-10-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="descriptive-module-pminshiny-eventlog-visual-analysis.html"/>
+<link rel="next" href="grouping-module-pmining-grouping-module.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-install"><i class="fa fa-check"></i><b>1.1</b> How to install</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#visualization-of-user-interfaces"><i class="fa fa-check"></i><b>1.2</b> Visualization of user interfaces</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html"><i class="fa fa-check"></i><b>2</b> Descriptive Module: “pMinShiny: EventLog Visual Analysis”</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html#data-loading-section"><i class="fa fa-check"></i><b>2.1</b> Data Loading section</a></li>
+<li class="chapter" data-level="2.2" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html#eventlog-data-analysis-section"><i class="fa fa-check"></i><b>2.2</b> EventLog Data analysis section</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html#event-distribution"><i class="fa fa-check"></i><b>2.2.1</b> Event distribution</a></li>
+<li class="chapter" data-level="2.2.2" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html#co-occurrence-of-events"><i class="fa fa-check"></i><b>2.2.2</b> co-occurrence of events</a></li>
+<li class="chapter" data-level="2.2.3" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html#trace-time-evolution"><i class="fa fa-check"></i><b>2.2.3</b> Trace time evolution</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html#eventlog-trace-inspection-section"><i class="fa fa-check"></i><b>2.3</b> EventLog Trace inspection section:</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="enrichment-module-pmining-eventlog-merge-module.html"><a href="enrichment-module-pmining-eventlog-merge-module.html"><i class="fa fa-check"></i><b>3</b> Enrichment Module: “pMining: EventLog Merge Module”</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="enrichment-module-pmining-eventlog-merge-module.html"><a href="enrichment-module-pmining-eventlog-merge-module.html#background-information"><i class="fa fa-check"></i><b>3.1</b> Background information</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="enrichment-module-pmining-eventlog-merge-module.html"><a href="enrichment-module-pmining-eventlog-merge-module.html#ancillary-data-type"><i class="fa fa-check"></i><b>3.1.1</b> Ancillary data type</a></li>
+<li class="chapter" data-level="3.1.2" data-path="enrichment-module-pmining-eventlog-merge-module.html"><a href="enrichment-module-pmining-eventlog-merge-module.html#merging-techniques"><i class="fa fa-check"></i><b>3.1.2</b> Merging Techniques</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="enrichment-module-pmining-eventlog-merge-module.html"><a href="enrichment-module-pmining-eventlog-merge-module.html#loading-sections-loading-event-log-and-loading-ancillary-data"><i class="fa fa-check"></i><b>3.2</b> Loading Sections: “Loading Event Log” and “Loading Ancillary Data”</a></li>
+<li class="chapter" data-level="3.3" data-path="enrichment-module-pmining-eventlog-merge-module.html"><a href="enrichment-module-pmining-eventlog-merge-module.html#setting-rules-section-enrichment-rules"><i class="fa fa-check"></i><b>3.3</b> Setting Rules Section: “Enrichment Rules”</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="grouping-module-pmining-grouping-module.html"><a href="grouping-module-pmining-grouping-module.html"><i class="fa fa-check"></i><b>4</b> Grouping Module: “pMining: Grouping Module”</a></li>
+<li class="chapter" data-level="5" data-path="process-discovery-module.html"><a href="process-discovery-module.html"><i class="fa fa-check"></i><b>5</b> Process Discovery Module:</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="process-discovery-module.html"><a href="process-discovery-module.html#pminshiny-careflow-module"><i class="fa fa-check"></i><b>5.1</b> “pMinShiny: Careflow Module”</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="process-discovery-module.html"><a href="process-discovery-module.html#careflow-miner-section"><i class="fa fa-check"></i><b>5.1.1</b> Careflow miner Section</a></li>
+<li class="chapter" data-level="5.1.2" data-path="process-discovery-module.html"><a href="process-discovery-module.html#probabilistic-careflow-miner-section"><i class="fa fa-check"></i><b>5.1.2</b> “Probabilistic CareFlow Miner” section</a></li>
+<li class="chapter" data-level="5.1.3" data-path="process-discovery-module.html"><a href="process-discovery-module.html#path-analysis-section"><i class="fa fa-check"></i><b>5.1.3</b> Path Analysis section</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>6</b> </a></li>
+<li class="chapter" data-level="7" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>7</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>7.1</b> Publishing</a></li>
+<li class="chapter" data-level="7.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>7.2</b> 404 pages</a></li>
+<li class="chapter" data-level="7.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>7.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">pMinShiny: user guide</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="enrichment-module-pmining-eventlog-merge-module" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Enrichment Module: “pMining: EventLog Merge Module”<a href="enrichment-module-pmining-eventlog-merge-module.html#enrichment-module-pmining-eventlog-merge-module" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In order to better understand the functioning of this module, it is necessary, while moving on to the description of its components, to introduce the concepts of <strong>“Ancillary Data”</strong>, <strong>crossectional variables</strong>, <strong>longitudinal variables</strong> and explain the merging techniques (<strong>“as Event”</strong> and <strong>“by Attribute”</strong>) which represent the real core of the enrichment module.</p>
+<p>For this reason, in the next section will be introduced some useful concepts for a real understanding of the use and purpose of the module itself.</p>
+<div id="background-information" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Background information<a href="enrichment-module-pmining-eventlog-merge-module.html#background-information" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>The main function of this module is to take in input an Event Log</strong>, made up of the standard columns</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>and starting from this <strong>try to enrich it</strong> (by adding new rows and/or new columns) with information from <strong>Ancillary Data</strong>.</p>
+<p><img src="images/MERGEMODULEdescr.png" style="width:100.0%" />
+<br/>
+<br/></p>
+<div id="ancillary-data-type" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Ancillary data type<a href="enrichment-module-pmining-eventlog-merge-module.html#ancillary-data-type" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Ancillary data</strong> are data sets containing informations which can be added to Event Log. Ancillary data sets can contain any type of information, in particular they can be of the following types:
+<br/></p>
+<ul>
+<li><strong>Crossectional</strong>: data sets that contain only “Crossectional” information, i.e. not time-dependent.
+An example could be a data set composed as follows:</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>SEX</th>
+<th>AGE</th>
+<th>CENTER</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>F</td>
+<td>45</td>
+<td>Pavia</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>M</td>
+<td>68</td>
+<td>Milano</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>M</td>
+<td>54</td>
+<td>Pavia</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>F</td>
+<td>32</td>
+<td>Pavia</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<ul>
+<li><p><strong>Longitudinal</strong> : data sets containing ‘Longitudinal’ (time-dependent) information.
+Within the set of longitudinal data sets it is appropriate to make a further classification, distinguishing two different types of longitudinal variables:</p>
+<ol style="list-style-type: decimal">
+<li><strong><em>“numerical”</em></strong> <strong>longitudinal variables</strong>. These are time-dependent variables with a numerical value associated (i.e. a measure).
+An example of numerical longitudinal data set could be the following.</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>EXAM CODE (LOINC)</th>
+<th>DESCRIPTION</th>
+<th>DATE</th>
+<th>MEASURE</th>
+<th>UNIT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1742-6</td>
+<td>alanine aminotransferase (ALT)</td>
+<td>2020-04-23</td>
+<td>26</td>
+<td>U/L</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1920-8</td>
+<td>aspartate aminotransferase (AST)</td>
+<td>2020-04-23</td>
+<td>12</td>
+<td>U/L</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>1975-2</td>
+<td>total bilirubin</td>
+<td>2020-05-11</td>
+<td>0.4</td>
+<td>mg/dL</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>1988-5</td>
+<td>C-reactive protein (CRP) (Normal Sensitivity)</td>
+<td>2020-10-05</td>
+<td>4.8</td>
+<td>mg/L</td>
+</tr>
+</tbody>
+</table>
+<p>According to the logic followed in this application, the longitudinal variable of this data set can be both the variable “EXAM CODE” or “DESCRIPTION” since the values assumed by these variable univocally express a certain type of exam. Furthermore, we can define this as numerical longitudinal variable because each examination is associated with a measurement.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong><em>“categorical”</em></strong> <strong>longitudinal variables</strong>. These are also time-dependent variables, but unlike the numerical logitudinal variables, no measurement is associated with these variables.
+An example of a data set containing categorical logitudinal variables could be the following:</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>PHECODE</th>
+<th>DESCRIPTION</th>
+<th>DATE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>550</td>
+<td>Abdominal hernia</td>
+<td>2020-04-23</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>480</td>
+<td>Pneumonia</td>
+<td>2021-03-14</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>250</td>
+<td>Diabetes mellitus</td>
+<td>2020-05-11</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>296</td>
+<td>Mood disorders</td>
+<td>2020-10-05</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p></li>
+<li><p><strong>Mixed</strong>: data set containing both longitudinal and crossectional variables (i.e. [ID, SEX, AGE, DEATH, DEATH.DATE]):</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>SEX</th>
+<th>DEATH</th>
+<th>DEATH DATE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>F</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>M</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>M</td>
+<td>1</td>
+<td>2020-05-11</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>F</td>
+<td>0</td>
+<td></td>
+</tr>
+</tbody>
+</table></li>
+<li><p><strong>Event log</strong>: it is possible that the ancillary data to be integrated to the original event log are themselves events log organised in the classical structure:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2020-04-12</td>
+<td>2020-06-01</td>
+<td>endocrine/metabolic</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2021-01-25</td>
+<td>2021-03-30</td>
+<td>mental disorders</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>2019-11-08</td>
+<td>2019-12-28</td>
+<td>symptoms</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>2021-06-11</td>
+<td>2021-09-21</td>
+<td>injuries &amp; poisonings</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+<p>It is also important to explicit that each ancillary data set must contain a <strong>foreign key</strong> that allows the ancillary data set to match the event log.</p>
+<p><em>For example, supposing that we want to add to the original Event Log composed of [ID, DATE INI, DATE END, EVENT] the information on sex and age contained in the ancillary data set [PAZ.ID, SEX, AGE, CENTER], it will be necessary to specify both the key of the ancillary data set (in this case “PAZ. ID”) and the key of the Event Log (in this case “ID”). In fact, the AGE and SEX information will be added from the correspondence “ID” (key of Event Log) and “PAZ.ID” (key of Ancillary data set).</em></p>
+<p>Also the enrichment module is made up of several sections and the aim of this paragraph is to show the various sections of the module, their use and the logic behind their creation.</p>
+</div>
+<div id="merging-techniques" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Merging Techniques<a href="enrichment-module-pmining-eventlog-merge-module.html#merging-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In order to achieve the actual enrichment of the event log through the information coming from the ancillary data, two different techniques have been implemented:</p>
+<ul>
+<li><strong>Merge as Event</strong> ;</li>
+<li><strong>Merge by Attributes</strong> ;</li>
+</ul>
+<p>The central point of both merge techniques is to compute an output that is event-centric and that contains new information by adding new attributes or new events to the original Event Log.</p>
+<p>Therefore, in both cases the starting point will be the event log and the substantial difference between the two techniques is the different logic used to incorporate the information coming from the time-dependent variables.</p>
+<p>By <strong>Merge as Event</strong> techinques <em>new informations are added as new event</em> so by adding new rows to the original Event Log; Using <strong>Merge by Attribute</strong> technique, <em>new informations are added as new column, so as attribute of the event</em>.
+<br/></p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/eventVSatt.PNG" style="width:100.0%" />
+<br/>
+<br/></p>
+<p>This is how the two interfaces for parameter setting and merge rules look like:</p>
+<ul>
+<li><p><strong>Merge as Event</strong></p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/merge_Event.PNG" style="width:100.0%" /></p>
+<p><br/></p></li>
+<li><p><strong>Merge by Attribute</strong></p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/merge_Attribute.PNG" style="width:100.0%" /></p></li>
+</ul>
+<p>As far as <strong>crossectional variables</strong> are concerned (i.e. those that do not depend on time), they will be treated in the same way in both techniques by adding new columns relating to the single variable.</p>
+<p>To clarify what happens with crossectional variables, let’s look at an example:</p>
+<p>Suppose we want to add to our event log in the standard format:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2020-04-12</td>
+<td>2020-06-01</td>
+<td>endocrine/metabolic</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2021-01-25</td>
+<td>2021-03-30</td>
+<td>mental disorders</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>2019-11-08</td>
+<td>2019-12-28</td>
+<td>symptoms</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>2021-06-11</td>
+<td>2021-09-21</td>
+<td>injuries &amp; poisonings</td>
+</tr>
+</tbody>
+</table>
+<p>the crossectional information contained in the ancillary data set structured as follows:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>SEX</th>
+<th>AGE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>F</td>
+<td>45</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>M</td>
+<td>68</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>M</td>
+<td>54</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>F</td>
+<td>32</td>
+</tr>
+</tbody>
+</table>
+<p>The output for both techniques will be an event log with this structure:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+<th>SEX</th>
+<th>AGE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2020-04-12</td>
+<td>2020-06-01</td>
+<td>endocrine/metabolic</td>
+<td>F</td>
+<td>45</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2021-01-25</td>
+<td>2021-03-30</td>
+<td>mental disorders</td>
+<td>M</td>
+<td>68</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>2019-11-08</td>
+<td>2019-12-28</td>
+<td>symptoms</td>
+<td>M</td>
+<td>54</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>2021-06-11</td>
+<td>2021-09-21</td>
+<td>injuries &amp; poisonings</td>
+<td>F</td>
+<td>32</td>
+</tr>
+</tbody>
+</table>
+<p>In the next section, the two merge techniques will be presented in detail also using examples in order to better understand the application of the two techniques on the remaining types of ancillary data (longitudinal, mixed and eventlog).</p>
+<div id="merge-as-event" class="section level4 hasAnchor" number="3.1.2.1">
+<h4><span class="header-section-number">3.1.2.1</span> Merge as Event<a href="enrichment-module-pmining-eventlog-merge-module.html#merge-as-event" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The <strong>“merge as event” technique</strong> allows new events to be added to the original event log. It is therefore clear that what the user will have to do in this case is to explicit the variables of the ancillary data set which represent the variables DATE INI, DATE END and EVENT (which are the standard variables that make up an event log).</p>
+<p>Let’s assume to have as starting point an Event Log in the standard format describing the different wards in which a patient was admitted during his stay:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2020-04-12</td>
+<td>2020-06-01</td>
+<td>ICU</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2021-01-25</td>
+<td>2021-03-30</td>
+<td>Covid</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>2019-11-08</td>
+<td>2019-12-28</td>
+<td>Subintensive</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>2021-06-11</td>
+<td>2021-09-21</td>
+<td>Cardiology</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s also suppose we wanted to enrich this Event Log with some informations coming from different type of ancillary data set using the <strong>merge as event</strong> technique.<br/></p>
+<p><em>In the next sections all the possible use case will be shown</em></p>
+<div id="enrichment-from-longitudinal-ancillary-data-set" class="section level5 hasAnchor" number="3.1.2.1.1">
+<h5><span class="header-section-number">3.1.2.1.1</span> Enrichment from longitudinal ancillary data set:<a href="enrichment-module-pmining-eventlog-merge-module.html#enrichment-from-longitudinal-ancillary-data-set" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>In this case we have time dependent variables that can be either categorical or numeric. <br/><br/></p>
+<ol style="list-style-type: decimal">
+<li><strong>Numeric longitudinal dalta</strong>: let’s consider a data set composed as follows</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>EXAM CODE (LOINC)</th>
+<th>DESCRIPTION</th>
+<th>DATE</th>
+<th>MEASURE</th>
+<th>UNIT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1742-6</td>
+<td>alanine aminotransferase (ALT)</td>
+<td>2020-04-23</td>
+<td>26</td>
+<td>U/L</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1920-8</td>
+<td>aspartate aminotransferase (AST)</td>
+<td>2020-04-23</td>
+<td>12</td>
+<td>U/L</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>1975-2</td>
+<td>total bilirubin</td>
+<td>2020-05-11</td>
+<td>0.4</td>
+<td>mg/dL</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>1988-5</td>
+<td>C-reactive protein (CRP) (Normal Sensitivity)</td>
+<td>2020-10-05</td>
+<td>4.8</td>
+<td>mg/L</td>
+</tr>
+</tbody>
+</table>
+<p><br/>
+and let’s suppose that <strong>the aim of this merge is to include in the original event log, also the information related to the laboratory examinations</strong> that the patients underwent.<br/>
+So, what we want to output is an Event Log that provides, for each patient both information about their ward changes and the tests and procedures they underwent.</p>
+<p>The first thing to do is to identify the <strong>key of the data</strong> set, i.e. the variable that is the link between this new data set and the original Event Log. In this case, the key is the variable ID.</p>
+<p>After that, we need to <strong>explicit the information</strong> in which we are interested (in this example the exams) <strong>in the standard Event Log format</strong>:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p><br/></p>
+<ul>
+<li><p>The <strong>ID</strong> variable is the variable we have selected as the <strong>key</strong> to the table.</p></li>
+<li><p>The <strong>EVENT</strong> variable will be the <strong>longitudinal variable</strong> that we want to enrich the Event Log with.</p></li>
+<li><p>The variables <strong>DATE INI</strong> and <strong>DATE END</strong> are the <strong>time indicators</strong>.</p></li>
+</ul>
+<p>In our case, the time variable we are interested in is the variable “EXAM CODE” and as a time indication we will use the variable “EXAM DATE” which will represent both the starting and the ending date of the event “exam.”</p>
+<p>So the ancillary data set will take this new form:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2020-04-23</td>
+<td>2020-04-23</td>
+<td>1742-6</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>2020-04-23</td>
+<td>2020-04-23</td>
+<td>1920-8</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>2020-05-11</td>
+<td>2020-05-11</td>
+<td>1975-2</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>2020-10-05</td>
+<td>2020-10-05</td>
+<td>1988-5</td>
+</tr>
+</tbody>
+</table>
+<p>At this point, the last step remaining is to <strong>add the new rows obtained in this way to the initial event log</strong>. The output will be as follows:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2020-04-12</td>
+<td>2020-06-01</td>
+<td>ICU</td>
+</tr>
+<tr class="even">
+<td><strong>1</strong></td>
+<td><strong>2020-04-23</strong></td>
+<td><strong>2020-04-23</strong></td>
+<td><strong>1920-8 </strong></td>
+</tr>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td><strong>2020-04-23</strong></td>
+<td><strong>2020-04-23</strong></td>
+<td><strong>1920-8 </strong></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2021-01-25</td>
+<td>2021-03-30</td>
+<td>Covid</td>
+</tr>
+<tr class="odd">
+<td><strong>2</strong></td>
+<td><strong>2020-05-11</strong></td>
+<td><strong>2020-05-11</strong></td>
+<td><strong>1975-2</strong></td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>2019-11-08</td>
+<td>2019-12-28</td>
+<td>Subintensive</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td><strong>2020-10-05</strong></td>
+<td><strong>2020-10-05</strong></td>
+<td><strong>1988-5</strong></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>2021-06-11</td>
+<td>2021-09-21</td>
+<td>Cardiology</td>
+</tr>
+</tbody>
+</table>
+<p>In addition to what has been described up to this point, by using this merge technique with <strong>numerical longitudinal variables</strong>, we may also be interested in acquiring information regarding the value assumed by the temporal variable (in our example, we may wish to enrich the event log by adding the value of the measurement). To do so, a column containing the measurement information is add to the event log created from the ancillary data.</p>
+<p>The result will be an event log with a slightly modified structure:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+<th>VALUE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2020-04-23</td>
+<td>2020-04-23</td>
+<td>1742-6</td>
+<td>26</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>2020-04-23</td>
+<td>2020-04-23</td>
+<td>1920-8</td>
+<td>12</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>2020-05-11</td>
+<td>2020-05-11</td>
+<td>1975-2</td>
+<td>0.4</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>2020-10-05</td>
+<td>2020-10-05</td>
+<td>1988-5</td>
+<td>4.8</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>Please note:</em></strong> that since the original event log has no value column, the value column will also be added for events in the original event log, but its values will remain null for those events:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+<th>VALUE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2020-04-12</td>
+<td>2020-06-01</td>
+<td>ICU</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>1</strong></td>
+<td><strong>2020-04-23</strong></td>
+<td><strong>2020-04-23</strong></td>
+<td><strong>1742-6</strong></td>
+<td><strong>26</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td><strong>2020-04-23</strong></td>
+<td><strong>2020-04-23</strong></td>
+<td><strong>1920-8 </strong></td>
+<td><strong>12</strong></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2021-01-25</td>
+<td>2021-03-30</td>
+<td>Covid</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>2</strong></td>
+<td><strong>2020-05-11</strong></td>
+<td><strong>2020-05-11</strong></td>
+<td><strong>1975-2</strong></td>
+<td><strong>0.4</strong></td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>2019-11-08</td>
+<td>2019-12-28</td>
+<td>Subintensive</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td><strong>2020-10-05</strong></td>
+<td><strong>2020-10-05</strong></td>
+<td><strong>1988-5</strong></td>
+<td><strong>4.8</strong></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>2021-06-11</td>
+<td>2021-09-21</td>
+<td>Cardiology</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><br/>
+<br/></p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Categorical longitudinal value</strong> : let’s now consider this data set:</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>PHECODE</th>
+<th>DESCRIPTION</th>
+<th>DATE</th>
+<th>DIAG.CODE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>550</td>
+<td>Abdominal hernia</td>
+<td>2020-04-23</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>480</td>
+<td>Pneumonia</td>
+<td>2021-03-14</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>250</td>
+<td>Diabetes mellitus</td>
+<td>2020-05-11</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>296</td>
+<td>Mood disorders</td>
+<td>2020-10-05</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>And suppose, as in the previous example, we want to add this new information to
+the event log containing the admissions, in order to enrich it with the
+information on the diagnoses.</p>
+<p>Once again, what we need to do is to:</p>
+<ul>
+<li><strong>specify the key of this data set</strong> (ID variable);</li>
+<li><strong>explicit the temporal indication</strong>, which again will be the same for DATE_INI and
+DATE_ END,</li>
+<li><strong>select the longitudinal variable</strong> that will be used as Event (in this case PHECODE var) .</li>
+</ul>
+<p>By doing so, we will have rewritten the starting ancillary data set in an Event Log in the standard format:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2020-04-23</td>
+<td>2020-04-23</td>
+<td>550</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>2021-03-14</td>
+<td>2021-03-14</td>
+<td>480</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>2020-05-11</td>
+<td>2020-05-11</td>
+<td>250</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>2020-10-05</td>
+<td>2020-10-05</td>
+<td>296</td>
+</tr>
+</tbody>
+</table>
+<p>After adding this new events to the original Event log, the output of the enrichment would be:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2020-04-12</td>
+<td>2020-06-01</td>
+<td>ICU</td>
+</tr>
+<tr class="even">
+<td><strong>1</strong></td>
+<td><strong>2020-04-23</strong></td>
+<td><strong>2020-04-23</strong></td>
+<td><strong>550</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td><strong>2021-03-14</strong></td>
+<td><strong>2021-03-14</strong></td>
+<td><strong>480 </strong></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2021-01-25</td>
+<td>2021-03-30</td>
+<td>Covid</td>
+</tr>
+<tr class="odd">
+<td><strong>2</strong></td>
+<td><strong>2020-05-11</strong></td>
+<td><strong>2020-05-11</strong></td>
+<td><strong>250</strong></td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>2019-11-08</td>
+<td>2019-12-28</td>
+<td>Subintensive</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td><strong>2020-10-05</strong></td>
+<td><strong>2020-10-05</strong></td>
+<td><strong>296</strong></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>2021-06-11</td>
+<td>2021-09-21</td>
+<td>Cardiology</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>Please note:</em></strong> we could have used as longitudinal variable also the variable “Description.” If we had made this choice, the ancillary data set in its new form would have been as follows:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2020-04-23</td>
+<td>2020-04-23</td>
+<td>Abdominal hernia</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>2021-03-14</td>
+<td>2021-03-14</td>
+<td>Pneumonia</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>2020-05-11</td>
+<td>2020-05-11</td>
+<td>Diabetes mellitus</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>2020-10-05</td>
+<td>2020-10-05</td>
+<td>Mood disorders</td>
+</tr>
+</tbody>
+</table>
+<p>and the output of the enrichment:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2020-04-12</td>
+<td>2020-06-01</td>
+<td>ICU</td>
+</tr>
+<tr class="even">
+<td><strong>1</strong></td>
+<td><strong>2020-04-23</strong></td>
+<td><strong>2020-04-23</strong></td>
+<td><strong>Abdominal hernia</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td><strong>2021-03-14</strong></td>
+<td><strong>2021-03-14</strong></td>
+<td><strong>Pneumonia</strong></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2021-01-25</td>
+<td>2021-03-30</td>
+<td>Covid</td>
+</tr>
+<tr class="odd">
+<td><strong>2</strong></td>
+<td><strong>2020-05-11</strong></td>
+<td><strong>2020-05-11</strong></td>
+<td><strong>Diabetes mellitus</strong></td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>2019-11-08</td>
+<td>2019-12-28</td>
+<td>Subintensive</td>
+</tr>
+<tr class="odd">
+<td><strong>3</strong></td>
+<td><strong>2020-10-05</strong></td>
+<td><strong>2020-10-05</strong></td>
+<td><strong>Mood disorders</strong></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>2021-06-11</td>
+<td>2021-09-21</td>
+<td>Cardiology</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+</div>
+<div id="enrichment-from-longitudinal-mixed-ancillary-data-set" class="section level5 hasAnchor" number="3.1.2.1.2">
+<h5><span class="header-section-number">3.1.2.1.2</span> Enrichment from “longitudinal mixed” ancillary data set:<a href="enrichment-module-pmining-eventlog-merge-module.html#enrichment-from-longitudinal-mixed-ancillary-data-set" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Another type of ancillary data set that we might be interested in using to enrich the event log is one that contains both cross sectional and longitudinal variables. For example the following data set:</p>
+<table>
+<thead>
+<tr class="header">
+<th>PAT ID</th>
+<th>SEX</th>
+<th>AGE</th>
+<th>DEATH</th>
+<th>DEATH DATE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>F</td>
+<td>43</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>M</td>
+<td>56</td>
+<td>0</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>M</td>
+<td>84</td>
+<td>1</td>
+<td>2020-05-11</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>F</td>
+<td>21</td>
+<td>0</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>What we would like to do is to <strong>add both sex and age information as well as death information</strong>. <br/> In order to do so, we should act in a similar way to the previous cases, but we have also to make explicit which of the variables in the data set should be treated as crossectional (and therefore added as columns in the event log, since they are not time-dependent information).</p>
+<p>The steps to be followed are:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Explicit the crossectional variables</strong>, that in this case are SEX and AGE.</li>
+<li><strong>Rewrite the ancillary data set in the form of an event log</strong>, so:</li>
+</ol>
+<ul>
+<li><strong>Explain the ID</strong>: once again, remember that the id is always and only the key of the data set (in this case PAT ID).</li>
+<li><strong>Add the date information</strong>. In this case (DEATH DATE)</li>
+<li><strong>Set time-dependent variable</strong> (in this example “DEATH” <strong>as the event</strong>).</li>
+</ul>
+<p>The output of the enrichment will be the following Event Log:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+<th><strong>SEX</strong></th>
+<th><strong>AGE</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2020-04-12</td>
+<td>2020-06-01</td>
+<td>ICU</td>
+<td><strong>F</strong></td>
+<td><strong>43</strong></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2021-01-25</td>
+<td>2021-03-30</td>
+<td>Covid</td>
+<td><strong>M</strong></td>
+<td><strong>56</strong></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>2019-11-08</td>
+<td>2019-12-28</td>
+<td>Subintensive</td>
+<td><strong>M</strong></td>
+<td><strong>84</strong></td>
+</tr>
+<tr class="even">
+<td><strong>3</strong></td>
+<td><strong>2020-05-11</strong></td>
+<td><strong>2020-05-11</strong></td>
+<td><strong>1</strong></td>
+<td><strong>M</strong></td>
+<td><strong>84</strong></td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>2021-06-11</td>
+<td>2021-09-21</td>
+<td>Cardiology</td>
+<td><strong>F</strong></td>
+<td><strong>21</strong></td>
+</tr>
+</tbody>
+</table>
+<p>As you can see, <strong>columns have been added for the crossectional variables</strong> and in addition <strong>a death event has been added for the patient with id=3</strong> beacause that patient experienced the event “death.”</p>
+<p>It is alto important notice that value 1 was added to the event column because what we selected as the longitudinal variable (the one that would play the role of “event” in the Event Log structure) is a category variable that encodes the death event with the values 0-1 (still alive/dead).</p>
+<p>The event written in this form is not very easily interpretable, because we lose track of what that 1 value refers to.</p>
+<p>This problem is solved by the <strong>possibility given to the user to modify the event label</strong> when rewriting the ancillary data set in the Event Log form. So to recapitulate the procedure:</p>
+<ul>
+<li>explicit ID</li>
+<li>add the date information.</li>
+<li>explicit time-dependent variable.</li>
+<li><strong>change the label of our categorical variable</strong> in this case to “DEATH.”</li>
+</ul>
+<p>In this way the output becomes:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+<th><strong>SEX</strong></th>
+<th><strong>AGE</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2020-04-12</td>
+<td>2020-06-01</td>
+<td>ICU</td>
+<td><strong>F</strong></td>
+<td><strong>43</strong></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2021-01-25</td>
+<td>2021-03-30</td>
+<td>Covid</td>
+<td><strong>M</strong></td>
+<td><strong>56</strong></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>2019-11-08</td>
+<td>2019-12-28</td>
+<td>Subintensive</td>
+<td><strong>M</strong></td>
+<td><strong>84</strong></td>
+</tr>
+<tr class="even">
+<td><strong>3</strong></td>
+<td><strong>2020-05-11</strong></td>
+<td><strong>2020-05-11</strong></td>
+<td><strong>DEATH</strong></td>
+<td><strong>M</strong></td>
+<td><strong>84</strong></td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>2021-06-11</td>
+<td>2021-09-21</td>
+<td>Cardiology</td>
+<td><strong>F</strong></td>
+<td><strong>21</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="enrichment-from-event-log-data-set" class="section level5 hasAnchor" number="3.1.2.1.3">
+<h5><span class="header-section-number">3.1.2.1.3</span> Enrichment from “Event Log” data set:<a href="enrichment-module-pmining-eventlog-merge-module.html#enrichment-from-event-log-data-set" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Suppose we want to add another <strong>Event Log</strong> with different events to the initial one, for example the following one containing events related to diagnoses:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2020-04-12</td>
+<td>2020-06-01</td>
+<td>endocrine/metabolic</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2021-01-25</td>
+<td>2021-03-30</td>
+<td>mental disorders</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>2019-11-08</td>
+<td>2019-12-28</td>
+<td>symptoms</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>2021-06-11</td>
+<td>2021-09-21</td>
+<td>injuries &amp; poisonings</td>
+</tr>
+</tbody>
+</table>
+<p>In this case, the merge is simpler because it is already formatted as an Event Log, so it will just be merged with the original, resulting in an output like the following:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2020-04-12</td>
+<td>2020-06-01</td>
+<td>ICU</td>
+</tr>
+<tr class="even">
+<td><strong>1</strong></td>
+<td><strong>2020-04-12</strong></td>
+<td><strong>2020-06-01</strong></td>
+<td><strong>endocrine/metabolic</strong></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>2021-01-25</td>
+<td>2021-03-30</td>
+<td>Covid</td>
+</tr>
+<tr class="even">
+<td>*<strong>2</strong></td>
+<td><strong>2021-01-25</strong></td>
+<td><strong>2021-03-30</strong></td>
+<td><strong>mental disorders</strong></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>2019-11-08</td>
+<td>2019-12-28</td>
+<td>Subintensive</td>
+</tr>
+<tr class="even">
+<td><strong>3</strong></td>
+<td><strong>2019-11-08</strong></td>
+<td><strong>2019-12-28</strong></td>
+<td><strong>symptoms</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>4</strong></td>
+<td><strong>2021-06-11</strong></td>
+<td><strong>2021-09-21</strong></td>
+<td><strong>injuries &amp; poisonings</strong></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>2021-06-11</td>
+<td>2021-09-21</td>
+<td>Cardiology</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="rule-setting-interface-some-examples" class="section level4 hasAnchor" number="3.1.2.2">
+<h4><span class="header-section-number">3.1.2.2</span> 2.2.2.4 Rule Setting Interface: some examples<a href="enrichment-module-pmining-eventlog-merge-module.html#rule-setting-interface-some-examples" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Once we have explained how the merge as event technique works, we can move on to the next step, which is to understand <strong>how the merge logic is integrated into the interface</strong>.</p>
+<p>In the previous paragraphs we have shown the technique applied to each of the types of ancillary data sets. Considering the classification of ancillary data types, in this section a series of use cases will be presented in order to graphically show how to set all the parameters correctly.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Longitudinal ancillary data set</strong>:
+Given the following ancillary data set</p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/long_dataset.png" style="width:100.0%" />
+<br/></p>
+<p>It is possible to select the data set key in the <em>Ancillary loading section</em>, by clicking on the column relating to the chosen variable, or by selecting it from the drop-down menu in the left-hand sidebar.</p>
+<p>Once this has been done, and assuming that we wish to apply the merge as event technique, the next step is to <strong>click on the Merge button</strong> and then, once in the <strong>“enrichment rules” section</strong> and in particular in the panel related to this data set, click on the <strong>“merge as event”</strong> button.</p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/long_rules1.png" style="width:100.0%" /></p>
+<p>This is what is shown once the “merge as event” button is clicked. As shown in the following image there are some <strong>pre-filled fields</strong>.</p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/long_rules2.PNG" style="width:100.0%" />
+<br/></p>
+<p>The one you need to pay attention to is the <strong>“ID”</strong> field in the <strong>“creation of events”</strong> section. <br/></p>
+<p>As explained above, the main effort of this technique is to rewrite the temporal information coming from the ancillary data set in the Event Logs form. For this reason <strong>the user is asked to indicate which variable of the ancillary data set to use as ID, which as DATA INI, DATA END and as EVENT</strong>. <br/></p>
+<p>The “ID” field cannot be modified and is set to the variable indicated as key in the data set loading section.</p>
+<p>Another restriction is presented in the choice of the variable chosen to represent the variable “event” of the event log: as explained above the <strong>only variable that can be used as “event” is the longitudinal variable</strong>.</p>
+<p>Therefore, when the field “select a time-dependet var for the enrichment” is set, the inserted variable will also be set in the field “select var as EVENT.”</p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/long_rule3.PNG" style="width:100.0%" /></p>
+<p>As regards the selection of variables to be used as <strong>DATE_INI</strong> and <strong>DATE_END</strong>, the variable (or variables) of the ancillary data set that correspond to the time indication of the longitudinal variable shall be inserted.
+Once all the fields in the “Creation of the Event” section have been filled in, a table will appear showing how the ancillary data set has been reorganised on the basis of the information entered</p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/long_rules4.PNG" style="width:100.0%" /></p>
+<p>As has been shown in <em>section 2.2.2.1</em> on Merge as Event applied to ancillary data sets with numerical longitudinal variables,it is also possible to <strong>include the information about the numerical value associated to the time variable</strong> (in this case the measurement detected by the laboratory test).
+In fact, by entering in the <strong>“select var to add”</strong> the ancillary variable related to the measurement, a new column will be added to the Event log generated from the ancillary data.</p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/long_rules5.PNG" style="width:100.0%" />
+<br/></p>
+<p>Once all the fields have been completed, the last step is to click on <strong>“Save Settings”</strong> and then on the <strong>“compute merge” button</strong> in the side bar.</p>
+<p>In this way, the final <strong>“New Event Log”</strong> section will appear in which it will be possible to view the complete Event Log and by clicking on the <strong>download button</strong> it is possible to download it.</p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/long_rules6.PNG" style="width:100.0%" />
+<br/>
+<br/>
+<br/></p></li>
+<li><p><strong>Categorical ancillary data set</strong>: the procedure to be followed in this case is the same as the previous one.</p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/categ_rules1.PNG" style="width:100.0%" /></p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/categ_rules2.PNG" style="width:100.0%" /></p>
+<p>In this case we are dealing with a <strong>categorical longitudinal variable</strong>, so we do not expect any numerical value to be associated with this variable. However, we might be interested in adding some information anyway. <br/>
+For example, let’s suppose that we are also interested in the Phecode associated with the diagnosis and not only its descriptive label. To meet this need we can, once again, use the <strong>“select var to add” field</strong> by selecting the variable “Phecode.”
+It is possible to add from 0 to N variables through this field. For example, suppose we also want to add the variable “category,” the ancillary data set will be reformatted as follows:<br/></p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/categ_rules3.PNG" style="width:100.0%" /></p>
+<p>Once the procedure is complete, this will be the output:</p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/categ_rules4.PNG" style="width:100.0%" /></p>
+<p><br/>
+<br/></p></li>
+<li><p><strong>Mixed ancillary data set</strong>: in this case, the ancillary data set includes both cross-sectional and longitudinal variables. Longitudinal variables are used, as usual, for the creation of new events.
+The crossectional variables are added as columns, as an attribute of each event. <br/>
+Let’s now take a look at an example:</p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/mixed_rules0.PNG" style="width:100.0%" /></p>
+<p>This data set is the same as shown in point 1 of this list, the only difference is the variable <strong>“cod_institute”</strong> which is a crossectional variable.
+The interface for setting the merge parameters should be set in the usual way, but we have to explicit the crossectional variable by adding “cod_institute” in <strong>“select crossectional variable for the enrichment”</strong> input.</p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/mixed_rules1.PNG" style="width:100.0%" /></p>
+<p>The <strong>output</strong> of this merge will be as follows:</p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/mixed_rules2.PNG" style="width:100.0%" /></p>
+<p>As can be seen from the image, the final Event Log contains both the new rows (highlighted in blue) derived from the longitudinal variable and a new column linked to the information derived from the crossectional variable (cod_istituto).</p>
+<p><br/>
+<br/></p></li>
+<li><p><strong>Event Log ancillary data set</strong>: This is probably the simplest use case since the ancillary data is already in the form of the event log, the rule setting will be much more intuitive:</p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/el_rules0.PNG" style="width:100.0%" />
+<img src="C:/Users/maria/Desktop/tesi/images/el_rules1.PNG" style="width:100.0%" /></p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/el_rules2.PNG" style="width:100.0%" /></p></li>
+</ol>
+<p><br/>
+<br/></p>
+</div>
+<div id="merge-by-attribute" class="section level4 hasAnchor" number="3.1.2.3">
+<h4><span class="header-section-number">3.1.2.3</span> Merge by Attribute<a href="enrichment-module-pmining-eventlog-merge-module.html#merge-by-attribute" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The <strong>“merge by attribute”</strong> technique allows the enrichment of the Event Log by <strong>adding new attributes for each row of the event log</strong>.
+These attributes (added as new columns) contain information derived from the ancillary variables, which as we already know, may or may not be time dependent.
+As we have already explained in one of the previous sections, what differentiates this technique from “merge as event” technique is the <strong>different handling of time-dependent variables</strong>.</p>
+<p>Basically, this technique focuses on the <strong>single event</strong> (single row of the original Event Log) and starting from its <strong>DATA INI and DATA END computes a time-window</strong>. The next step is to <strong>investigate the selected time variables in this time window</strong> and, according to a rule, <strong>summarise all measurements in a point value that is associated to the event</strong>.</p>
+<p>To better understand what the “Merge by Attribute” techinque does, an example is proposed below.</p>
+<p>Let’s consider an Event Log that describes the different wards in which a patient was admitted during his stay and suppose that we want to add to each event, the value of some laboratory test which are, for example, <em>alanine aminotransferase (ALT)</em> and <em>lactate dehydrogenase (LDH)</em>.</p>
+<p>The starting Event Log and the ancillary data set we intend to use for enrichment are presented below:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2020-04-12</td>
+<td>2020-06-01</td>
+<td>ICU</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2021-01-25</td>
+<td>2021-03-30</td>
+<td>Covid</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>2019-11-08</td>
+<td>2019-12-28</td>
+<td>Subintensive</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>2021-06-11</td>
+<td>2021-09-21</td>
+<td>Cardiology</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>EXAM CODE (LOINC)</th>
+<th>DESCRIPTION</th>
+<th>DATE</th>
+<th>MEASURE</th>
+<th>UNIT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1742-6</td>
+<td>alanine aminotransferase (ALT)</td>
+<td>2020-04-23</td>
+<td>26</td>
+<td>U/L</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1920-8</td>
+<td>aspartate aminotransferase (AST)</td>
+<td>2020-04-23</td>
+<td>12</td>
+<td>U/L</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1920-8</td>
+<td>aspartate aminotransferase (AST)</td>
+<td>2020-05-11</td>
+<td>14</td>
+<td>U/L</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2532-0</td>
+<td>lactate dehydrogenase (LDH)</td>
+<td>2020-02-20</td>
+<td>191</td>
+<td>U/L</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>1975-2</td>
+<td>total bilirubin</td>
+<td>2020-05-11</td>
+<td>0.4</td>
+<td>mg/dL</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>1988-5</td>
+<td>C-reactive protein (CRP) (Normal Sensitivity)</td>
+<td>2020-10-05</td>
+<td>4.8</td>
+<td>mg/L</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>1742-6</td>
+<td>alanine aminotransferase (ALT)</td>
+<td>2021-06-15</td>
+<td>24</td>
+<td>U/L</td>
+</tr>
+</tbody>
+</table>
+<p>As already mentioned, this technique starts from the single event, so let’s start with the first line of the Event Log.</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2020-04-12</td>
+<td>2020-06-01</td>
+<td>ICU</td>
+</tr>
+</tbody>
+</table>
+<p>This refers to the Event <strong>“ICU”</strong> meaning that the patient with <strong>ID=1</strong> was admitted to this ward from <strong>“2020-04-12”</strong> (which is the value assumed by DATE INI) to <strong>“2020-06-01”</strong> (the value assumed by DATE END).</p>
+<p><br/></p>
+<p>What we would like to do is to take all the measurements of the tests we are interested in, i.e. AST and LDH, that the patient with id=1 underwent in the time period from 2020-04-12 to 2020-06-01.</p>
+<p>We therefore select from the ancillary data set the rows that satisfy the following conditions:</p>
+<ul>
+<li>patient examinations with <strong>ID=1</strong></li>
+<li>tests related to the measurements we are interested in: <strong>AST</strong> or <strong>LDH</strong></li>
+<li>examinations occurring in the time range [2020-04-12 to 2020-06-01]</li>
+</ul>
+<p>Following these requirement the selected ancillary data lines will be as follows:</p>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>EXAM CODE (LOINC)</th>
+<th>DESCRIPTION</th>
+<th>DATE</th>
+<th>MEASURE</th>
+<th>UNIT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1</strong></td>
+<td>1920-8</td>
+<td>aspartate aminotransferase <strong>(AST)</strong></td>
+<td><strong>2020-04-23</strong></td>
+<td>12</td>
+<td>U/L</td>
+</tr>
+<tr class="even">
+<td><strong>1</strong></td>
+<td>1920-8</td>
+<td>aspartate aminotransferase <strong>(AST)</strong></td>
+<td><strong>2020-05-11</strong></td>
+<td>14</td>
+<td>U/L</td>
+</tr>
+</tbody>
+</table>
+<p>The next step is to understand <strong>how the informations extracted from the ancillary dataset should be used to enrich the event log</strong>.</p>
+<p>As already explained at the beginning of this paragraph, the objective of this technique is to add the new information as attributes of the Event Log.
+This is done by adding new columns for each event (which, up to now, has been characterised only by the ID, DATA INI, DATA END and EVENT-LABEL columns).</p>
+<p>In this example, the AST and LDH columns will be added to the event log as follows:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+<th>aspartate aminotransferase <strong>(AST)</strong></th>
+<th>lactate dehydrogenase (LDH)</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<p>Let’s see how to fill in these new attributes starting with the “ICU” event related to patient 1 (id=1).</p>
+<p>For the patient with id=1 two rows were selected from the ancillary dataset, both related to the AST test.</p>
+<p>It must now be decided how to synthesise these two measurements into a single point measurement.</p>
+<p>Several strategies were proposed for this purpose:
+- mean
+- first measurement: i.e. the first measurement taken in the considered time window
+- last measurement: the last measurement taken in the considered time window
+- minimum of measurements
+- maximum of measurements
+- count: which is not the value of the measurement, but the number of times the parameter has been measured in the time window
+- trend : the linear regression coefficient, which will indicate the “trend” assumed by the measurements (value &gt;0 indicates an increasing trend, &lt;0 a decreasing trend).</p>
+<p>Assuming that, in our example we want to use the mean in order to sum up all the measurement of AST, the result would be as follows:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>DATE INI</th>
+<th>DATE END</th>
+<th>EVENT</th>
+<th>aspartate aminotransferase <strong>(AST)</strong></th>
+<th>lactate dehydrogenase (LDH)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2020-04-12</td>
+<td>2020-06-01</td>
+<td>ICU</td>
+<td><strong>13</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>As we can see from the table below there is no value for the attribute LDH, this is because patient 1 had not undergone any LDH exam in that time frame.</p>
+<p>In this merge technique, the user has to fill in the input fields related to:</p>
+<ul>
+<li>Crossectional variables (in case of Mixed Ancillary data set);</li>
+<li>Longitudinal variable, which is the name of variable that has to be added as new attribute of the event;</li>
+<li>The value of the Longitudinal variable that has to be added;</li>
+<li>The variable which indicates the numerical value of the longitudinal variable (in case of numerical longitudinal variables);</li>
+<li>The variable containing the temporal information;</li>
+</ul>
+<p>In the last part of the interface dedicated to the merge by attribute technique, the user is asked to set parameters useful in applying the technique. These paramiters are:</p>
+<ul>
+<li><strong>delta before</strong> and <strong>delta after</strong> are the time intervals (in days) that are added to the start and end date of each Event Log event. In this way it is possible to compute the time window for sampling the measurements of the longitudinal variable.</li>
+<li><strong>rule</strong> which allows to summarize all the measurement in the time window in a single value that is added in the Event Log as a new attribute.</li>
+</ul>
+<p>It is also possible to set specific parameters for each value of the longitudinal variable using the switch provided.</p>
+<p><img src="C:/Users/maria/Desktop/tesi/images/merge_by_Att.PNG" style="width:100.0%" /></p>
+</div>
+</div>
+</div>
+<div id="loading-sections-loading-event-log-and-loading-ancillary-data" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Loading Sections: “Loading Event Log” and “Loading Ancillary Data”<a href="enrichment-module-pmining-eventlog-merge-module.html#loading-sections-loading-event-log-and-loading-ancillary-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The first thing to do will clearly be to upload the event log we want to enrich,so the first sections of this module are dedicated to uploading data.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Event Log uploading</strong></p>
+<p><img src="images/el_upload.PNG" style="width:100.0%" /></p>
+<p><br/></p></li>
+<li><p><strong>Ancillary data uploading</strong></p>
+<p><img src="images/ad_upload.PNG" style="width:100.0%" /></p></li>
+</ol>
+<p>In both cases, it will be possible to <strong>set all the parameters relating to the format</strong> in which the data sets are, in order to ensure that they are loaded correctly.</p>
+<p>In addition, it will be <strong>necessary to specify which variables of the data sets rappresents the “foreign key”</strong>. This operation is essential and must be carried out carefully, since the role played by the variable specified as the “key” is crucial: in fact, it ensures the correspondences between the two (or more) data sets that are going to be merged.</p>
+<p><em>In the next paragraph the focus is on Ancillary data in order to better understand what anicllary data are, how they are structured and what kind of information they can contain.</em></p>
+</div>
+<div id="setting-rules-section-enrichment-rules" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Setting Rules Section: “Enrichment Rules”<a href="enrichment-module-pmining-eventlog-merge-module.html#setting-rules-section-enrichment-rules" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>After loading the Event Log and one or more Ancillary files (having correctly set the keys for each data set) and clicking on the “merge” button, a new section dedicated to setting the merge rules will appear.</p>
+<p><img src="images/rules_section.PNG" style="width:100.0%" />
+<br/></p>
+<p>This section is composed of <strong>several panels</strong>, <strong>one for each ancillary data set</strong>.</p>
+<p>Each panel contains a small <strong>data recap</strong> of the ancillary data set and <strong>two buttons</strong>, each linked to a different <strong>merge technique</strong>. In fact, the user is offered two different ways of enriching the Event Log, both of them start from the original event log, but they differ in their treatment of longitudinal variables.</p>
+<p>Before going on to explain the use of the merge rule setting section, it is necessary to understand the two different techniques proposed and how they operate on the Event Log and ancillary data and how the output data set is built.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="descriptive-module-pminshiny-eventlog-visual-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="grouping-module-pmining-grouping-module.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-cross-refs.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

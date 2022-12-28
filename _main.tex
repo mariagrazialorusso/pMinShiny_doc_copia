@@ -1,0 +1,1222 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={pMinShiny: user guide},
+  pdfauthor={Tutti gli amici del PM liquid lab},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+
+\title{pMinShiny: user guide}
+\author{Tutti gli amici del PM liquid lab}
+\date{2022-09-06}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{about}{%
+\chapter{About}\label{about}}
+
+\textbf{``pMinShiny''} is a software suite, which aims to provide support in Process Mining analysis in healthcare.
+
+The suite is divided into several independent modules, which offer support in the various steps of the computational pipeline, which are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Descriptive Module}: in this module it is possible to display descriptive statistics on events. There are both event distribution charts and co-occurrence analysis.
+\item
+  \textbf{Enrichment module}: in this module it is possible to enrich the loaded event log with additional information from other files. This additional information can be either ``crossectional'' information (sex, age, care centre) or information from time-dependent variables. In order to manage time-depedent variables, two different merge techniques are proposed.
+\item
+  \textbf{CareFlow module}: this module allows the actual analysis of the event log, using an implementation of the CareFlow Mining agorithm provided by the \emph{pMineR} package.
+\item
+  \textbf{Grouping module}: this module allows you to create new dictionaries that can be used to group events into subgroups.
+\end{enumerate}
+
+\hypertarget{how-to-install}{%
+\section{How to install}\label{how-to-install}}
+
+\hypertarget{descriptive-module-pminshiny-eventlog-visual-analysis}{%
+\chapter{Descriptive Module: ``pMinShiny: EventLog Visual Analysis''}\label{descriptive-module-pminshiny-eventlog-visual-analysis}}
+
+Each module of the software suite is structured in different sections. In the case of the \textbf{description module} there are 3 sections.
+
+\hypertarget{data-loading-section}{%
+\section{Data Loading section}\label{data-loading-section}}
+
+This section, as shown in the image below, is dedicated to uploading the EventLog. It is necessary to upload the EventLog in CSV format and have a structure like the one shown in the figure, both in terms of information and its ordering
+(Case ID, Date, Event\ldots)
+
+\includegraphics[width=1\textwidth,height=\textheight]{images/DescrModule.png}
+
+\hypertarget{eventlog-data-analysis-section}{%
+\section{EventLog Data analysis section}\label{eventlog-data-analysis-section}}
+
+This second section allows to observe 6 types of graphs. Of these, three concern the distribution of events (Event Distribution, Event Distribution over patients and over time), two concern the co-occurrence of events (Co occurrence matrix and upset plot) and the last is about the traces and reveal the contribute of all the traces during the time.
+It is possible to deselect the events you do not want to investigate by using the checkboxes on the left side of the section.
+
+\hypertarget{event-distribution}{%
+\subsection{Event distribution}\label{event-distribution}}
+
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth,height=\textheight]{images/Visualizzazione1.png}
+\caption{Event distribution over patiens}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth,height=\textheight]{images/Visualizzazione2.png}
+\caption{Event distribution over time}
+\end{figure}
+
+\hypertarget{co-occurrence-of-events}{%
+\subsection{co-occurrence of events}\label{co-occurrence-of-events}}
+
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth,height=\textheight]{images/Visualizzazione3.png}
+\caption{Event co-occurrence, Heatmap}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth,height=\textheight]{images/Visualizzazione4.png}
+\caption{Event co-occurrence, upsetplot}
+\end{figure}
+
+\hypertarget{trace-time-evolution}{%
+\subsection{Trace time evolution}\label{trace-time-evolution}}
+
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth,height=\textheight]{images/traceEvolution_plot.png}
+\caption{Trace Evolution plot}
+\end{figure}
+
+\hypertarget{eventlog-trace-inspection-section}{%
+\section{EventLog Trace inspection section:}\label{eventlog-trace-inspection-section}}
+
+This section is dedicated to the analysis of traces and their visualization over time. Specifically, it is possible to extract subgroups of patients whose traces meet certain requirements and visualize them by time lines.
+
+\includegraphics[width=1\textwidth,height=\textheight]{images/traceInspection.png}
+\includegraphics[width=1\textwidth,height=\textheight]{images/trace_analysis2.png}
+
+\hypertarget{enrichment-module-pmining-eventlog-merge-module}{%
+\chapter{Enrichment Module: ``pMining: EventLog Merge Module''}\label{enrichment-module-pmining-eventlog-merge-module}}
+
+In order to better understand the functioning of this module, it is necessary, while moving on to the description of its components, to introduce the concepts of \textbf{``Ancillary Data''}, \textbf{crossectional variables}, \textbf{longitudinal variables} and explain the merging techniques (\textbf{``as Event''} and \textbf{``by Attribute''}) which represent the real core of the enrichment module.
+
+For this reason, in the next section will be introduced some useful concepts for a real understanding of the use and purpose of the module itself.
+
+\hypertarget{background-information}{%
+\section{Background information}\label{background-information}}
+
+\textbf{The main function of this module is to take in input an Event Log}, made up of the standard columns
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT \\
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+and starting from this \textbf{try to enrich it} (by adding new rows and/or new columns) with information from \textbf{Ancillary Data}.
+
+\includegraphics[width=1\textwidth,height=\textheight]{images/MERGEMODULEdescr.png}
+
+\hypertarget{ancillary-data-type}{%
+\subsection{Ancillary data type}\label{ancillary-data-type}}
+
+\textbf{Ancillary data} are data sets containing informations which can be added to Event Log. Ancillary data sets can contain any type of information, in particular they can be of the following types:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Crossectional}: data sets that contain only ``Crossectional'' information, i.e.~not time-dependent.
+  An example could be a data set composed as follows:
+\end{itemize}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+ID & SEX & AGE & CENTER \\
+\midrule
+\endhead
+1 & F & 45 & Pavia \\
+2 & M & 68 & Milano \\
+3 & M & 54 & Pavia \\
+4 & F & 32 & Pavia \\
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\item
+  \textbf{Longitudinal} : data sets containing `Longitudinal' (time-dependent) information.
+  Within the set of longitudinal data sets it is appropriate to make a further classification, distinguishing two different types of longitudinal variables:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    \textbf{\emph{``numerical''}} \textbf{longitudinal variables}. These are time-dependent variables with a numerical value associated (i.e.~a measure).
+    An example of numerical longitudinal data set could be the following.
+  \end{enumerate}
+
+  \begin{longtable}[]{@{}llllll@{}}
+  \toprule
+  ID & EXAM CODE (LOINC) & DESCRIPTION & DATE & MEASURE & UNIT \\
+  \midrule
+  \endhead
+  1 & 1742-6 & alanine aminotransferase (ALT) & 2020-04-23 & 26 & U/L \\
+  1 & 1920-8 & aspartate aminotransferase (AST) & 2020-04-23 & 12 & U/L \\
+  2 & 1975-2 & total bilirubin & 2020-05-11 & 0.4 & mg/dL \\
+  3 & 1988-5 & C-reactive protein (CRP) (Normal Sensitivity) & 2020-10-05 & 4.8 & mg/L \\
+  \bottomrule
+  \end{longtable}
+
+  According to the logic followed in this application, the longitudinal variable of this data set can be both the variable ``EXAM CODE'' or ``DESCRIPTION'' since the values assumed by these variable univocally express a certain type of exam. Furthermore, we can define this as numerical longitudinal variable because each examination is associated with a measurement.
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    \textbf{\emph{``categorical''}} \textbf{longitudinal variables}. These are also time-dependent variables, but unlike the numerical logitudinal variables, no measurement is associated with these variables.
+    An example of a data set containing categorical logitudinal variables could be the following:
+  \end{enumerate}
+
+  \begin{longtable}[]{@{}llll@{}}
+  \toprule
+  ID & PHECODE & DESCRIPTION & DATE \\
+  \midrule
+  \endhead
+  1 & 550 & Abdominal hernia & 2020-04-23 \\
+  1 & 480 & Pneumonia & 2021-03-14 \\
+  2 & 250 & Diabetes mellitus & 2020-05-11 \\
+  3 & 296 & Mood disorders & 2020-10-05 \\
+  \bottomrule
+  \end{longtable}
+\item
+  \textbf{Mixed}: data set containing both longitudinal and crossectional variables (i.e.~{[}ID, SEX, AGE, DEATH, DEATH.DATE{]}):
+
+  \begin{longtable}[]{@{}llll@{}}
+  \toprule
+  ID & SEX & DEATH & DEATH DATE \\
+  \midrule
+  \endhead
+  1 & F & 0 & \\
+  2 & M & 0 & \\
+  3 & M & 1 & 2020-05-11 \\
+  4 & F & 0 & \\
+  \bottomrule
+  \end{longtable}
+\item
+  \textbf{Event log}: it is possible that the ancillary data to be integrated to the original event log are themselves events log organised in the classical structure:
+
+  \begin{longtable}[]{@{}llll@{}}
+  \toprule
+  ID & DATE INI & DATE END & EVENT \\
+  \midrule
+  \endhead
+  1 & 2020-04-12 & 2020-06-01 & endocrine/metabolic \\
+  2 & 2021-01-25 & 2021-03-30 & mental disorders \\
+  3 & 2019-11-08 & 2019-12-28 & symptoms \\
+  4 & 2021-06-11 & 2021-09-21 & injuries \& poisonings \\
+  \bottomrule
+  \end{longtable}
+\end{itemize}
+
+It is also important to explicit that each ancillary data set must contain a \textbf{foreign key} that allows the ancillary data set to match the event log.
+
+\emph{For example, supposing that we want to add to the original Event Log composed of {[}ID, DATE INI, DATE END, EVENT{]} the information on sex and age contained in the ancillary data set {[}PAZ.ID, SEX, AGE, CENTER{]}, it will be necessary to specify both the key of the ancillary data set (in this case ``PAZ. ID'') and the key of the Event Log (in this case ``ID''). In fact, the AGE and SEX information will be added from the correspondence ``ID'' (key of Event Log) and ``PAZ.ID'' (key of Ancillary data set).}
+
+Also the enrichment module is made up of several sections and the aim of this paragraph is to show the various sections of the module, their use and the logic behind their creation.
+
+\hypertarget{merging-techniques}{%
+\subsection{Merging Techniques}\label{merging-techniques}}
+
+In order to achieve the actual enrichment of the event log through the information coming from the ancillary data, two different techniques have been implemented:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Merge as Event} ;
+\item
+  \textbf{Merge by Attributes} ;
+\end{itemize}
+
+The central point of both merge techniques is to compute an output that is event-centric and that contains new information by adding new attributes or new events to the original Event Log.
+
+Therefore, in both cases the starting point will be the event log and the substantial difference between the two techniques is the different logic used to incorporate the information coming from the time-dependent variables.
+
+By \textbf{Merge as Event} techinques \emph{new informations are added as new event} so by adding new rows to the original Event Log; Using \textbf{Merge by Attribute} technique, \emph{new informations are added as new column, so as attribute of the event}.
+
+\includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/eventVSatt.png}
+
+This is how the two interfaces for parameter setting and merge rules look like:
+
+\begin{itemize}
+\item
+  \textbf{Merge as Event}
+
+  \includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/merge_Event.png}
+\item
+  \textbf{Merge by Attribute}
+
+  \includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/merge_Attribute.png}
+\end{itemize}
+
+As far as \textbf{crossectional variables} are concerned (i.e.~those that do not depend on time), they will be treated in the same way in both techniques by adding new columns relating to the single variable.
+
+To clarify what happens with crossectional variables, let's look at an example:
+
+Suppose we want to add to our event log in the standard format:
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT \\
+\midrule
+\endhead
+1 & 2020-04-12 & 2020-06-01 & endocrine/metabolic \\
+2 & 2021-01-25 & 2021-03-30 & mental disorders \\
+3 & 2019-11-08 & 2019-12-28 & symptoms \\
+4 & 2021-06-11 & 2021-09-21 & injuries \& poisonings \\
+\bottomrule
+\end{longtable}
+
+the crossectional information contained in the ancillary data set structured as follows:
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+ID & SEX & AGE \\
+\midrule
+\endhead
+1 & F & 45 \\
+2 & M & 68 \\
+3 & M & 54 \\
+4 & F & 32 \\
+\bottomrule
+\end{longtable}
+
+The output for both techniques will be an event log with this structure:
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT & SEX & AGE \\
+\midrule
+\endhead
+1 & 2020-04-12 & 2020-06-01 & endocrine/metabolic & F & 45 \\
+2 & 2021-01-25 & 2021-03-30 & mental disorders & M & 68 \\
+3 & 2019-11-08 & 2019-12-28 & symptoms & M & 54 \\
+4 & 2021-06-11 & 2021-09-21 & injuries \& poisonings & F & 32 \\
+\bottomrule
+\end{longtable}
+
+In the next section, the two merge techniques will be presented in detail also using examples in order to better understand the application of the two techniques on the remaining types of ancillary data (longitudinal, mixed and eventlog).
+
+\hypertarget{merge-as-event}{%
+\subsubsection{Merge as Event}\label{merge-as-event}}
+
+The \textbf{``merge as event'' technique} allows new events to be added to the original event log. It is therefore clear that what the user will have to do in this case is to explicit the variables of the ancillary data set which represent the variables DATE INI, DATE END and EVENT (which are the standard variables that make up an event log).
+
+Let's assume to have as starting point an Event Log in the standard format describing the different wards in which a patient was admitted during his stay:
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT \\
+\midrule
+\endhead
+1 & 2020-04-12 & 2020-06-01 & ICU \\
+2 & 2021-01-25 & 2021-03-30 & Covid \\
+3 & 2019-11-08 & 2019-12-28 & Subintensive \\
+4 & 2021-06-11 & 2021-09-21 & Cardiology \\
+\bottomrule
+\end{longtable}
+
+Let's also suppose we wanted to enrich this Event Log with some informations coming from different type of ancillary data set using the \textbf{merge as event} technique.
+
+\emph{In the next sections all the possible use case will be shown}
+
+\hypertarget{enrichment-from-longitudinal-ancillary-data-set}{%
+\paragraph{Enrichment from longitudinal ancillary data set:}\label{enrichment-from-longitudinal-ancillary-data-set}}
+
+In this case we have time dependent variables that can be either categorical or numeric.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Numeric longitudinal dalta}: let's consider a data set composed as follows
+\end{enumerate}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+ID & EXAM CODE (LOINC) & DESCRIPTION & DATE & MEASURE & UNIT \\
+\midrule
+\endhead
+1 & 1742-6 & alanine aminotransferase (ALT) & 2020-04-23 & 26 & U/L \\
+1 & 1920-8 & aspartate aminotransferase (AST) & 2020-04-23 & 12 & U/L \\
+2 & 1975-2 & total bilirubin & 2020-05-11 & 0.4 & mg/dL \\
+3 & 1988-5 & C-reactive protein (CRP) (Normal Sensitivity) & 2020-10-05 & 4.8 & mg/L \\
+\bottomrule
+\end{longtable}
+
+and let's suppose that \textbf{the aim of this merge is to include in the original event log, also the information related to the laboratory examinations} that the patients underwent.
+So, what we want to output is an Event Log that provides, for each patient both information about their ward changes and the tests and procedures they underwent.
+
+The first thing to do is to identify the \textbf{key of the data} set, i.e.~the variable that is the link between this new data set and the original Event Log. In this case, the key is the variable ID.
+
+After that, we need to \textbf{explicit the information} in which we are interested (in this example the exams) \textbf{in the standard Event Log format}:
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT \\
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\item
+  The \textbf{ID} variable is the variable we have selected as the \textbf{key} to the table.
+\item
+  The \textbf{EVENT} variable will be the \textbf{longitudinal variable} that we want to enrich the Event Log with.
+\item
+  The variables \textbf{DATE INI} and \textbf{DATE END} are the \textbf{time indicators}.
+\end{itemize}
+
+In our case, the time variable we are interested in is the variable ``EXAM CODE'' and as a time indication we will use the variable ``EXAM DATE'' which will represent both the starting and the ending date of the event ``exam''.
+
+So the ancillary data set will take this new form:
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT \\
+\midrule
+\endhead
+1 & 2020-04-23 & 2020-04-23 & 1742-6 \\
+1 & 2020-04-23 & 2020-04-23 & 1920-8 \\
+2 & 2020-05-11 & 2020-05-11 & 1975-2 \\
+3 & 2020-10-05 & 2020-10-05 & 1988-5 \\
+\bottomrule
+\end{longtable}
+
+At this point, the last step remaining is to \textbf{add the new rows obtained in this way to the initial event log}. The output will be as follows:
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT \\
+\midrule
+\endhead
+1 & 2020-04-12 & 2020-06-01 & ICU \\
+\textbf{1} & \textbf{2020-04-23} & \textbf{2020-04-23} & \textbf{1920-8 } \\
+\textbf{1} & \textbf{2020-04-23} & \textbf{2020-04-23} & \textbf{1920-8 } \\
+2 & 2021-01-25 & 2021-03-30 & Covid \\
+\textbf{2} & \textbf{2020-05-11} & \textbf{2020-05-11} & \textbf{1975-2} \\
+3 & 2019-11-08 & 2019-12-28 & Subintensive \\
+\textbf{3} & \textbf{2020-10-05} & \textbf{2020-10-05} & \textbf{1988-5} \\
+4 & 2021-06-11 & 2021-09-21 & Cardiology \\
+\bottomrule
+\end{longtable}
+
+In addition to what has been described up to this point, by using this merge technique with \textbf{numerical longitudinal variables}, we may also be interested in acquiring information regarding the value assumed by the temporal variable (in our example, we may wish to enrich the event log by adding the value of the measurement). To do so, a column containing the measurement information is add to the event log created from the ancillary data.
+
+The result will be an event log with a slightly modified structure:
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT & VALUE \\
+\midrule
+\endhead
+1 & 2020-04-23 & 2020-04-23 & 1742-6 & 26 \\
+1 & 2020-04-23 & 2020-04-23 & 1920-8 & 12 \\
+2 & 2020-05-11 & 2020-05-11 & 1975-2 & 0.4 \\
+3 & 2020-10-05 & 2020-10-05 & 1988-5 & 4.8 \\
+\bottomrule
+\end{longtable}
+
+\textbf{\emph{Please note:}} that since the original event log has no value column, the value column will also be added for events in the original event log, but its values will remain null for those events:
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT & VALUE \\
+\midrule
+\endhead
+1 & 2020-04-12 & 2020-06-01 & ICU & \\
+\textbf{1} & \textbf{2020-04-23} & \textbf{2020-04-23} & \textbf{1742-6} & \textbf{26} \\
+\textbf{1} & \textbf{2020-04-23} & \textbf{2020-04-23} & \textbf{1920-8 } & \textbf{12} \\
+2 & 2021-01-25 & 2021-03-30 & Covid & \\
+\textbf{2} & \textbf{2020-05-11} & \textbf{2020-05-11} & \textbf{1975-2} & \textbf{0.4} \\
+3 & 2019-11-08 & 2019-12-28 & Subintensive & \\
+\textbf{3} & \textbf{2020-10-05} & \textbf{2020-10-05} & \textbf{1988-5} & \textbf{4.8} \\
+4 & 2021-06-11 & 2021-09-21 & Cardiology & \\
+\bottomrule
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \textbf{Categorical longitudinal value} : let's now consider this data set:
+\end{enumerate}
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+ID & PHECODE & DESCRIPTION & DATE & DIAG.CODE \\
+\midrule
+\endhead
+1 & 550 & Abdominal hernia & 2020-04-23 & \\
+1 & 480 & Pneumonia & 2021-03-14 & \\
+2 & 250 & Diabetes mellitus & 2020-05-11 & \\
+3 & 296 & Mood disorders & 2020-10-05 & \\
+\bottomrule
+\end{longtable}
+
+And suppose, as in the previous example, we want to add this new information to
+the event log containing the admissions, in order to enrich it with the
+information on the diagnoses.
+
+Once again, what we need to do is to:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{specify the key of this data set} (ID variable);
+\item
+  \textbf{explicit the temporal indication}, which again will be the same for DATE\_INI and
+  DATE\_ END,
+\item
+  \textbf{select the longitudinal variable} that will be used as Event (in this case PHECODE var) .
+\end{itemize}
+
+By doing so, we will have rewritten the starting ancillary data set in an Event Log in the standard format:
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT \\
+\midrule
+\endhead
+1 & 2020-04-23 & 2020-04-23 & 550 \\
+1 & 2021-03-14 & 2021-03-14 & 480 \\
+2 & 2020-05-11 & 2020-05-11 & 250 \\
+3 & 2020-10-05 & 2020-10-05 & 296 \\
+\bottomrule
+\end{longtable}
+
+After adding this new events to the original Event log, the output of the enrichment would be:
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT \\
+\midrule
+\endhead
+1 & 2020-04-12 & 2020-06-01 & ICU \\
+\textbf{1} & \textbf{2020-04-23} & \textbf{2020-04-23} & \textbf{550} \\
+\textbf{1} & \textbf{2021-03-14} & \textbf{2021-03-14} & \textbf{480 } \\
+2 & 2021-01-25 & 2021-03-30 & Covid \\
+\textbf{2} & \textbf{2020-05-11} & \textbf{2020-05-11} & \textbf{250} \\
+3 & 2019-11-08 & 2019-12-28 & Subintensive \\
+\textbf{3} & \textbf{2020-10-05} & \textbf{2020-10-05} & \textbf{296} \\
+4 & 2021-06-11 & 2021-09-21 & Cardiology \\
+\bottomrule
+\end{longtable}
+
+\textbf{\emph{Please note:}} we could have used as longitudinal variable also the variable ``Description''. If we had made this choice, the ancillary data set in its new form would have been as follows:
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT \\
+\midrule
+\endhead
+1 & 2020-04-23 & 2020-04-23 & Abdominal hernia \\
+1 & 2021-03-14 & 2021-03-14 & Pneumonia \\
+2 & 2020-05-11 & 2020-05-11 & Diabetes mellitus \\
+3 & 2020-10-05 & 2020-10-05 & Mood disorders \\
+\bottomrule
+\end{longtable}
+
+and the output of the enrichment:
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT \\
+\midrule
+\endhead
+1 & 2020-04-12 & 2020-06-01 & ICU \\
+\textbf{1} & \textbf{2020-04-23} & \textbf{2020-04-23} & \textbf{Abdominal hernia} \\
+\textbf{1} & \textbf{2021-03-14} & \textbf{2021-03-14} & \textbf{Pneumonia} \\
+2 & 2021-01-25 & 2021-03-30 & Covid \\
+\textbf{2} & \textbf{2020-05-11} & \textbf{2020-05-11} & \textbf{Diabetes mellitus} \\
+3 & 2019-11-08 & 2019-12-28 & Subintensive \\
+\textbf{3} & \textbf{2020-10-05} & \textbf{2020-10-05} & \textbf{Mood disorders} \\
+4 & 2021-06-11 & 2021-09-21 & Cardiology \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{enrichment-from-longitudinal-mixed-ancillary-data-set}{%
+\paragraph{Enrichment from ``longitudinal mixed'' ancillary data set:}\label{enrichment-from-longitudinal-mixed-ancillary-data-set}}
+
+Another type of ancillary data set that we might be interested in using to enrich the event log is one that contains both cross sectional and longitudinal variables. For example the following data set:
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+PAT ID & SEX & AGE & DEATH & DEATH DATE \\
+\midrule
+\endhead
+1 & F & 43 & 0 & \\
+2 & M & 56 & 0 & \\
+3 & M & 84 & 1 & 2020-05-11 \\
+4 & F & 21 & 0 & \\
+\bottomrule
+\end{longtable}
+
+What we would like to do is to \textbf{add both sex and age information as well as death information}. In order to do so, we should act in a similar way to the previous cases, but we have also to make explicit which of the variables in the data set should be treated as crossectional (and therefore added as columns in the event log, since they are not time-dependent information).
+
+The steps to be followed are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Explicit the crossectional variables}, that in this case are SEX and AGE.
+\item
+  \textbf{Rewrite the ancillary data set in the form of an event log}, so:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Explain the ID}: once again, remember that the id is always and only the key of the data set (in this case PAT ID).
+\item
+  \textbf{Add the date information}. In this case (DEATH DATE)
+\item
+  \textbf{Set time-dependent variable} (in this example ``DEATH'' \textbf{as the event}).
+\end{itemize}
+
+The output of the enrichment will be the following Event Log:
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT & \textbf{SEX} & \textbf{AGE} \\
+\midrule
+\endhead
+1 & 2020-04-12 & 2020-06-01 & ICU & \textbf{F} & \textbf{43} \\
+2 & 2021-01-25 & 2021-03-30 & Covid & \textbf{M} & \textbf{56} \\
+3 & 2019-11-08 & 2019-12-28 & Subintensive & \textbf{M} & \textbf{84} \\
+\textbf{3} & \textbf{2020-05-11} & \textbf{2020-05-11} & \textbf{1} & \textbf{M} & \textbf{84} \\
+4 & 2021-06-11 & 2021-09-21 & Cardiology & \textbf{F} & \textbf{21} \\
+\bottomrule
+\end{longtable}
+
+As you can see, \textbf{columns have been added for the crossectional variables} and in addition \textbf{a death event has been added for the patient with id=3} beacause that patient experienced the event ``death''.
+
+It is alto important notice that value 1 was added to the event column because what we selected as the longitudinal variable (the one that would play the role of ``event'' in the Event Log structure) is a category variable that encodes the death event with the values 0-1 (still alive/dead).
+
+The event written in this form is not very easily interpretable, because we lose track of what that 1 value refers to.
+
+This problem is solved by the \textbf{possibility given to the user to modify the event label} when rewriting the ancillary data set in the Event Log form. So to recapitulate the procedure:
+
+\begin{itemize}
+\tightlist
+\item
+  explicit ID
+\item
+  add the date information.
+\item
+  explicit time-dependent variable.
+\item
+  \textbf{change the label of our categorical variable} in this case to ``DEATH''.
+\end{itemize}
+
+In this way the output becomes:
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT & \textbf{SEX} & \textbf{AGE} \\
+\midrule
+\endhead
+1 & 2020-04-12 & 2020-06-01 & ICU & \textbf{F} & \textbf{43} \\
+2 & 2021-01-25 & 2021-03-30 & Covid & \textbf{M} & \textbf{56} \\
+3 & 2019-11-08 & 2019-12-28 & Subintensive & \textbf{M} & \textbf{84} \\
+\textbf{3} & \textbf{2020-05-11} & \textbf{2020-05-11} & \textbf{DEATH} & \textbf{M} & \textbf{84} \\
+4 & 2021-06-11 & 2021-09-21 & Cardiology & \textbf{F} & \textbf{21} \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{enrichment-from-event-log-data-set}{%
+\paragraph{Enrichment from ``Event Log'' data set:}\label{enrichment-from-event-log-data-set}}
+
+Suppose we want to add another \textbf{Event Log} with different events to the initial one, for example the following one containing events related to diagnoses:
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT \\
+\midrule
+\endhead
+1 & 2020-04-12 & 2020-06-01 & endocrine/metabolic \\
+2 & 2021-01-25 & 2021-03-30 & mental disorders \\
+3 & 2019-11-08 & 2019-12-28 & symptoms \\
+4 & 2021-06-11 & 2021-09-21 & injuries \& poisonings \\
+\bottomrule
+\end{longtable}
+
+In this case, the merge is simpler because it is already formatted as an Event Log, so it will just be merged with the original, resulting in an output like the following:
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT \\
+\midrule
+\endhead
+1 & 2020-04-12 & 2020-06-01 & ICU \\
+\textbf{1} & \textbf{2020-04-12} & \textbf{2020-06-01} & \textbf{endocrine/metabolic} \\
+2 & 2021-01-25 & 2021-03-30 & Covid \\
+*\textbf{2} & \textbf{2021-01-25} & \textbf{2021-03-30} & \textbf{mental disorders} \\
+3 & 2019-11-08 & 2019-12-28 & Subintensive \\
+\textbf{3} & \textbf{2019-11-08} & \textbf{2019-12-28} & \textbf{symptoms} \\
+\textbf{4} & \textbf{2021-06-11} & \textbf{2021-09-21} & \textbf{injuries \& poisonings} \\
+4 & 2021-06-11 & 2021-09-21 & Cardiology \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{rule-setting-interface-some-examples}{%
+\subsubsection{2.2.2.4 Rule Setting Interface: some examples}\label{rule-setting-interface-some-examples}}
+
+Once we have explained how the merge as event technique works, we can move on to the next step, which is to understand \textbf{how the merge logic is integrated into the interface}.
+
+In the previous paragraphs we have shown the technique applied to each of the types of ancillary data sets. Considering the classification of ancillary data types, in this section a series of use cases will be presented in order to graphically show how to set all the parameters correctly.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Longitudinal ancillary data set}:
+  Given the following ancillary data set
+
+  \includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/long_dataset.png}
+
+  It is possible to select the data set key in the \emph{Ancillary loading section}, by clicking on the column relating to the chosen variable, or by selecting it from the drop-down menu in the left-hand sidebar.
+
+  Once this has been done, and assuming that we wish to apply the merge as event technique, the next step is to \textbf{click on the Merge button} and then, once in the \textbf{``enrichment rules'' section} and in particular in the panel related to this data set, click on the \textbf{``merge as event''} button.
+
+  \includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/long_rules1.png}
+
+  This is what is shown once the ``merge as event'' button is clicked. As shown in the following image there are some \textbf{pre-filled fields}.
+
+  \includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/long_rules2.png}
+
+  The one you need to pay attention to is the \textbf{``ID''} field in the \textbf{``creation of events''} section.
+
+  As explained above, the main effort of this technique is to rewrite the temporal information coming from the ancillary data set in the Event Logs form. For this reason \textbf{the user is asked to indicate which variable of the ancillary data set to use as ID, which as DATA INI, DATA END and as EVENT}.
+
+  The ``ID'' field cannot be modified and is set to the variable indicated as key in the data set loading section.
+
+  Another restriction is presented in the choice of the variable chosen to represent the variable ``event'' of the event log: as explained above the \textbf{only variable that can be used as ``event'' is the longitudinal variable}.
+
+  Therefore, when the field ``select a time-dependet var for the enrichment'' is set, the inserted variable will also be set in the field ``select var as EVENT''.
+
+  \includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/long_rule3.png}
+
+  As regards the selection of variables to be used as \textbf{DATE\_INI} and \textbf{DATE\_END}, the variable (or variables) of the ancillary data set that correspond to the time indication of the longitudinal variable shall be inserted.
+  Once all the fields in the ``Creation of the Event'' section have been filled in, a table will appear showing how the ancillary data set has been reorganised on the basis of the information entered
+
+  \includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/long_rules4.png}
+
+  As has been shown in \emph{section 2.2.2.1} on Merge as Event applied to ancillary data sets with numerical longitudinal variables,it is also possible to \textbf{include the information about the numerical value associated to the time variable} (in this case the measurement detected by the laboratory test).
+  In fact, by entering in the \textbf{``select var to add''} the ancillary variable related to the measurement, a new column will be added to the Event log generated from the ancillary data.
+
+  \includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/long_rules5.png}
+
+  Once all the fields have been completed, the last step is to click on \textbf{``Save Settings''} and then on the \textbf{``compute merge'' button} in the side bar.
+
+  In this way, the final \textbf{``New Event Log''} section will appear in which it will be possible to view the complete Event Log and by clicking on the \textbf{download button} it is possible to download it.
+
+  \includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/long_rules6.png}
+\item
+  \textbf{Categorical ancillary data set}: the procedure to be followed in this case is the same as the previous one.
+
+  \includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/categ_rules1.png}
+
+  \includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/categ_rules2.png}
+
+  In this case we are dealing with a \textbf{categorical longitudinal variable}, so we do not expect any numerical value to be associated with this variable. However, we might be interested in adding some information anyway.
+  For example, let's suppose that we are also interested in the Phecode associated with the diagnosis and not only its descriptive label. To meet this need we can, once again, use the \textbf{``select var to add'' field} by selecting the variable ``Phecode''.
+  It is possible to add from 0 to N variables through this field. For example, suppose we also want to add the variable ``category'', the ancillary data set will be reformatted as follows:
+
+  \includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/categ_rules3.png}
+
+  Once the procedure is complete, this will be the output:
+
+  \includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/categ_rules4.png}
+\item
+  \textbf{Mixed ancillary data set}: in this case, the ancillary data set includes both cross-sectional and longitudinal variables. Longitudinal variables are used, as usual, for the creation of new events.
+  The crossectional variables are added as columns, as an attribute of each event.
+  Let's now take a look at an example:
+
+  \includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/mixed_rules0.png}
+
+  This data set is the same as shown in point 1 of this list, the only difference is the variable \textbf{``cod\_institute''} which is a crossectional variable.
+  The interface for setting the merge parameters should be set in the usual way, but we have to explicit the crossectional variable by adding ``cod\_institute'' in \textbf{``select crossectional variable for the enrichment''} input.
+
+  \includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/mixed_rules1.png}
+
+  The \textbf{output} of this merge will be as follows:
+
+  \includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/mixed_rules2.png}
+
+  As can be seen from the image, the final Event Log contains both the new rows (highlighted in blue) derived from the longitudinal variable and a new column linked to the information derived from the crossectional variable (cod\_istituto).
+\item
+  \textbf{Event Log ancillary data set}: This is probably the simplest use case since the ancillary data is already in the form of the event log, the rule setting will be much more intuitive:
+
+  \includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/el_rules0.png}
+  \includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/el_rules1.png}
+
+  \includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/el_rules2.png}
+\end{enumerate}
+
+\hypertarget{merge-by-attribute}{%
+\subsubsection{Merge by Attribute}\label{merge-by-attribute}}
+
+The \textbf{``merge by attribute''} technique allows the enrichment of the Event Log by \textbf{adding new attributes for each row of the event log}.
+These attributes (added as new columns) contain information derived from the ancillary variables, which as we already know, may or may not be time dependent.
+As we have already explained in one of the previous sections, what differentiates this technique from ``merge as event'' technique is the \textbf{different handling of time-dependent variables}.
+
+Basically, this technique focuses on the \textbf{single event} (single row of the original Event Log) and starting from its \textbf{DATA INI and DATA END computes a time-window}. The next step is to \textbf{investigate the selected time variables in this time window} and, according to a rule, \textbf{summarise all measurements in a point value that is associated to the event}.
+
+To better understand what the ``Merge by Attribute'' techinque does, an example is proposed below.
+
+Let's consider an Event Log that describes the different wards in which a patient was admitted during his stay and suppose that we want to add to each event, the value of some laboratory test which are, for example, \emph{alanine aminotransferase (ALT)} and \emph{lactate dehydrogenase (LDH)}.
+
+The starting Event Log and the ancillary data set we intend to use for enrichment are presented below:
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT \\
+\midrule
+\endhead
+1 & 2020-04-12 & 2020-06-01 & ICU \\
+2 & 2021-01-25 & 2021-03-30 & Covid \\
+3 & 2019-11-08 & 2019-12-28 & Subintensive \\
+4 & 2021-06-11 & 2021-09-21 & Cardiology \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+ID & EXAM CODE (LOINC) & DESCRIPTION & DATE & MEASURE & UNIT \\
+\midrule
+\endhead
+1 & 1742-6 & alanine aminotransferase (ALT) & 2020-04-23 & 26 & U/L \\
+1 & 1920-8 & aspartate aminotransferase (AST) & 2020-04-23 & 12 & U/L \\
+1 & 1920-8 & aspartate aminotransferase (AST) & 2020-05-11 & 14 & U/L \\
+2 & 2532-0 & lactate dehydrogenase (LDH) & 2020-02-20 & 191 & U/L \\
+2 & 1975-2 & total bilirubin & 2020-05-11 & 0.4 & mg/dL \\
+3 & 1988-5 & C-reactive protein (CRP) (Normal Sensitivity) & 2020-10-05 & 4.8 & mg/L \\
+4 & 1742-6 & alanine aminotransferase (ALT) & 2021-06-15 & 24 & U/L \\
+\bottomrule
+\end{longtable}
+
+As already mentioned, this technique starts from the single event, so let's start with the first line of the Event Log.
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT \\
+\midrule
+\endhead
+1 & 2020-04-12 & 2020-06-01 & ICU \\
+\bottomrule
+\end{longtable}
+
+This refers to the Event \textbf{``ICU''} meaning that the patient with \textbf{ID=1} was admitted to this ward from \textbf{``2020-04-12''} (which is the value assumed by DATE INI) to \textbf{``2020-06-01''} (the value assumed by DATE END).
+
+What we would like to do is to take all the measurements of the tests we are interested in, i.e.~AST and LDH, that the patient with id=1 underwent in the time period from 2020-04-12 to 2020-06-01.
+
+We therefore select from the ancillary data set the rows that satisfy the following conditions:
+
+\begin{itemize}
+\tightlist
+\item
+  patient examinations with \textbf{ID=1}
+\item
+  tests related to the measurements we are interested in: \textbf{AST} or \textbf{LDH}
+\item
+  examinations occurring in the time range {[}2020-04-12 to 2020-06-01{]}
+\end{itemize}
+
+Following these requirement the selected ancillary data lines will be as follows:
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+ID & EXAM CODE (LOINC) & DESCRIPTION & DATE & MEASURE & UNIT \\
+\midrule
+\endhead
+\textbf{1} & 1920-8 & aspartate aminotransferase \textbf{(AST)} & \textbf{2020-04-23} & 12 & U/L \\
+\textbf{1} & 1920-8 & aspartate aminotransferase \textbf{(AST)} & \textbf{2020-05-11} & 14 & U/L \\
+\bottomrule
+\end{longtable}
+
+The next step is to understand \textbf{how the informations extracted from the ancillary dataset should be used to enrich the event log}.
+
+As already explained at the beginning of this paragraph, the objective of this technique is to add the new information as attributes of the Event Log.
+This is done by adding new columns for each event (which, up to now, has been characterised only by the ID, DATA INI, DATA END and EVENT-LABEL columns).
+
+In this example, the AST and LDH columns will be added to the event log as follows:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT & aspartate aminotransferase \textbf{(AST)} & lactate dehydrogenase (LDH) \\
+\midrule
+\endhead
+\bottomrule
+\end{longtable}
+
+Let's see how to fill in these new attributes starting with the ``ICU'' event related to patient 1 (id=1).
+
+For the patient with id=1 two rows were selected from the ancillary dataset, both related to the AST test.
+
+It must now be decided how to synthesise these two measurements into a single point measurement.
+
+Several strategies were proposed for this purpose:
+- mean
+- first measurement: i.e.~the first measurement taken in the considered time window
+- last measurement: the last measurement taken in the considered time window
+- minimum of measurements
+- maximum of measurements
+- count: which is not the value of the measurement, but the number of times the parameter has been measured in the time window
+- trend : the linear regression coefficient, which will indicate the ``trend'' assumed by the measurements (value \textgreater0 indicates an increasing trend, \textless0 a decreasing trend).
+
+Assuming that, in our example we want to use the mean in order to sum up all the measurement of AST, the result would be as follows:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}@{}}
+\toprule
+ID & DATE INI & DATE END & EVENT & aspartate aminotransferase \textbf{(AST)} & lactate dehydrogenase (LDH) \\
+\midrule
+\endhead
+1 & 2020-04-12 & 2020-06-01 & ICU & \textbf{13} & \\
+\bottomrule
+\end{longtable}
+
+As we can see from the table below there is no value for the attribute LDH, this is because patient 1 had not undergone any LDH exam in that time frame.
+
+In this merge technique, the user has to fill in the input fields related to:
+
+\begin{itemize}
+\tightlist
+\item
+  Crossectional variables (in case of Mixed Ancillary data set);
+\item
+  Longitudinal variable, which is the name of variable that has to be added as new attribute of the event;
+\item
+  The value of the Longitudinal variable that has to be added;
+\item
+  The variable which indicates the numerical value of the longitudinal variable (in case of numerical longitudinal variables);
+\item
+  The variable containing the temporal information;
+\end{itemize}
+
+In the last part of the interface dedicated to the merge by attribute technique, the user is asked to set parameters useful in applying the technique. These paramiters are:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{delta before} and \textbf{delta after} are the time intervals (in days) that are added to the start and end date of each Event Log event. In this way it is possible to compute the time window for sampling the measurements of the longitudinal variable.
+\item
+  \textbf{rule} which allows to summarize all the measurement in the time window in a single value that is added in the Event Log as a new attribute.
+\end{itemize}
+
+It is also possible to set specific parameters for each value of the longitudinal variable using the switch provided.
+
+\includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/merge_by_Att.png}
+
+\hypertarget{loading-sections-loading-event-log-and-loading-ancillary-data}{%
+\section{Loading Sections: ``Loading Event Log'' and ``Loading Ancillary Data''}\label{loading-sections-loading-event-log-and-loading-ancillary-data}}
+
+The first thing to do will clearly be to upload the event log we want to enrich,so the first sections of this module are dedicated to uploading data.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Event Log uploading}
+
+  \includegraphics[width=1\textwidth,height=\textheight]{images/el_upload.png}
+\item
+  \textbf{Ancillary data uploading}
+
+  \includegraphics[width=1\textwidth,height=\textheight]{images/ad_upload.png}
+\end{enumerate}
+
+In both cases, it will be possible to \textbf{set all the parameters relating to the format} in which the data sets are, in order to ensure that they are loaded correctly.
+
+In addition, it will be \textbf{necessary to specify which variables of the data sets rappresents the ``foreign key''}. This operation is essential and must be carried out carefully, since the role played by the variable specified as the ``key'' is crucial: in fact, it ensures the correspondences between the two (or more) data sets that are going to be merged.
+
+\emph{In the next paragraph the focus is on Ancillary data in order to better understand what anicllary data are, how they are structured and what kind of information they can contain.}
+
+\hypertarget{setting-rules-section-enrichment-rules}{%
+\section{Setting Rules Section: ``Enrichment Rules''}\label{setting-rules-section-enrichment-rules}}
+
+After loading the Event Log and one or more Ancillary files (having correctly set the keys for each data set) and clicking on the ``merge'' button, a new section dedicated to setting the merge rules will appear.
+
+\includegraphics[width=1\textwidth,height=\textheight]{images/rules_section.png}
+
+This section is composed of \textbf{several panels}, \textbf{one for each ancillary data set}.
+
+Each panel contains a small \textbf{data recap} of the ancillary data set and \textbf{two buttons}, each linked to a different \textbf{merge technique}. In fact, the user is offered two different ways of enriching the Event Log, both of them start from the original event log, but they differ in their treatment of longitudinal variables.
+
+Before going on to explain the use of the merge rule setting section, it is necessary to understand the two different techniques proposed and how they operate on the Event Log and ancillary data and how the output data set is built.
+
+\hypertarget{grouping-module-pmining-grouping-module}{%
+\chapter{Grouping Module: ``pMining: Grouping Module''}\label{grouping-module-pmining-grouping-module}}
+
+This module allows the user to create and save new event dictionaries. By creating these dictionary the user could be able to split the event in the uploaded Event Log, into new groups of events.
+Also this module is composed by several section:
+
+\includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/group_uno.png}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Add Dictionary} section: this section allows the user to create new dictionaries by grouping the events of the Event Log.
+  For each dictionary, it will be possible to define an arbitrary number of groups to which the user can assign a specific label.
+  A bar plot is displayed, showing the change in the distribution of events in the Event Log as a result of their new reorganization into the user-defined groups. At the end of this section it will be possible to display a summary table showing the correspondences between events and their group in the new defined dictionary,
+  Each new dictionary must be saved by clicking on the appropriate \emph{Save button}.
+\end{itemize}
+
+\includegraphics[width=1\textwidth,height=\textheight]{images/gmod2.png}
+
+\includegraphics[width=1\textwidth,height=\textheight]{images/gmod2_1.png}
+
+Once all dictionaries have been created and saved, you can move on to the next section by clicking the ``apply dictionary'' button.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Apply Dictionary} section: This concluding section shows the comparison of event distributions before and after their grouping and shows the event log obtained by applying to the original event log in new dictionary. By clicking the \emph{Download Button} it is possible to download the new EL.
+\end{itemize}
+
+\includegraphics[width=1\textwidth,height=\textheight]{images/gmod3.png}
+
+\hypertarget{process-discovery-module}{%
+\chapter{Process Discovery Module:}\label{process-discovery-module}}
+
+\hypertarget{pminshiny-careflow-module}{%
+\section{``pMinShiny: Careflow Module''}\label{pminshiny-careflow-module}}
+
+This module concerns the application of the Care Flow Mining algorithm to the Event Log loaded as input.
+First, the user will need to proceed with uploading the Event Log.
+
+\includegraphics[width=1\textwidth,height=\textheight]{/Users/maria/Desktop/tesi/images/CFmod_load.png}
+
+Once the EventLog is loaded, it will be possible to access two different sections which are dedicated to process discovery.
+
+\hypertarget{careflow-miner-section}{%
+\subsection{Careflow miner Section}\label{careflow-miner-section}}
+
+The first section is the \textbf{``Care Flow Miner''} section which shows the care flow graph. In this section the user has to set the parameters of the CareFlow Algotithm by entering values of \textbf{depth} and \textbf{support} in the specific input fields.
+It's also possible using the switch inputs, to visualize median time and the ``hidden'' leaf of the graph (in case the selected value is not the max value for the depth).
+
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth,height=\textheight]{images/CFM_sect1.png}
+\caption{In this example, the depth parameter was set to 4 and the support to 25. The switches were also set to show the medians of the times and the hidden leaves}
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  Pressing the \emph{``Enriched EL Analysis'' button} the \textbf{``Stratified CareaFlowMiner''} section will appear, an inferential analysis can be performed based on a binary stratification of the population. The user must specify in the appropriate input fields the variable to be used for stratification and the value it takes for each of the two subgroups.
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth,height=\textheight]{images/CFM_sec1_2.png}
+\caption{In this case, it was chosen to stratify the population based on variable ``SEX''. The nodes where there is a significant difference between the two groups (p value\textless{} 0.05) are highlighted}
+\end{figure}
+
+\hypertarget{probabilistic-careflow-miner-section}{%
+\subsection{``Probabilistic CareFlow Miner'' section}\label{probabilistic-careflow-miner-section}}
+
+The last section of this module is the ``Probabilistic CareFlow Miner'' section. This section shows the graph of the frequent clinical pathways, to which information regarding the probability of incurring which certain future state has been added. In this section the user will have to make explicit in the specific input fields, the parameters of the careflow mining algorithm (depth and support) and indicate the future state of interest. It's also possible to highlighting nodes of interest through the selection of their label in the specific field.
+
+\includegraphics[width=1\textwidth,height=\textheight]{images/CFM_sect2.png}
+\#\#\# Survival Analysis section
+
+\hypertarget{covariate-analysis-section}{%
+\subsection{Covariate Analysis section}\label{covariate-analysis-section}}
+
+\hypertarget{pminshiny-fomm-module}{%
+\section{``pMinShiny: FOMM Module''}\label{pminshiny-fomm-module}}
+
+\hypertarget{fomm-graph}{%
+\subsection{FOMM graph}\label{fomm-graph}}
+
+\hypertarget{survival-analysis-section}{%
+\subsection{Survival Analysis section}\label{survival-analysis-section}}
+
+\hypertarget{covariate-analysis-section-1}{%
+\subsection{Covariate Analysis section}\label{covariate-analysis-section-1}}
+
+\hypertarget{section}{%
+\chapter{}\label{section}}
+
+\hypertarget{sharing-your-book}{%
+\chapter{Sharing your book}\label{sharing-your-book}}
+
+\hypertarget{publishing}{%
+\section{Publishing}\label{publishing}}
+
+HTML books can be published online, see: \url{https://bookdown.org/yihui/bookdown/publishing.html}
+
+\hypertarget{pages}{%
+\section{404 pages}\label{pages}}
+
+By default, users will be directed to a 404 page if they try to access a webpage that cannot be found. If you'd like to customize your 404 page instead of using the default, you may add either a \texttt{\_404.Rmd} or \texttt{\_404.md} file to your project root and use code and/or Markdown syntax.
+
+\hypertarget{metadata-for-sharing}{%
+\section{Metadata for sharing}\label{metadata-for-sharing}}
+
+Bookdown HTML books will provide HTML metadata for social sharing on platforms like Twitter, Facebook, and LinkedIn, using information you provide in the \texttt{index.Rmd} YAML. To setup, set the \texttt{url} for your book and the path to your \texttt{cover-image} file. Your book's \texttt{title} and \texttt{description} are also used.
+
+This \texttt{gitbook} uses the same social sharing data across all chapters in your book- all links shared will look the same.
+
+Specify your book's source repository on GitHub using the \texttt{edit} key under the configuration options in the \texttt{\_output.yml} file, which allows users to suggest an edit by linking to a chapter's source file.
+
+Read more about the features of this output format here:
+
+\url{https://pkgs.rstudio.com/bookdown/reference/gitbook.html}
+
+Or use:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?bookdown}\SpecialCharTok{::}\NormalTok{gitbook}
+\end{Highlighting}
+\end{Shaded}
+
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}

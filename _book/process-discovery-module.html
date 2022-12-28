@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Process Discovery Module: | pMinShiny: user guide</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Process Discovery Module: | pMinShiny: user guide" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Process Discovery Module: | pMinShiny: user guide" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="PM liquid lab" />
+
+
+<meta name="date" content="2022-12-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="descriptive-module-pminshiny-eventlog-visual-analysis.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">pMinShiny: a brief user guide</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like <span>https://bookdown.org/yihui/bookdown</span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-install"><i class="fa fa-check"></i><b>1.1</b> How to install</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#visualization-of-user-interfaces"><i class="fa fa-check"></i><b>1.2</b> Visualization of user interfaces</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html"><i class="fa fa-check"></i><b>2</b> Descriptive Module: “pMinShiny: EventLog Visual Analysis”</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html#data-loading-section"><i class="fa fa-check"></i><b>2.1</b> Data Loading section</a></li>
+<li class="chapter" data-level="2.2" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html#eventlog-data-analysis-section"><i class="fa fa-check"></i><b>2.2</b> EventLog Data analysis section</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html#event-distribution"><i class="fa fa-check"></i><b>2.2.1</b> Event distribution</a></li>
+<li class="chapter" data-level="2.2.2" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html#co-occurrence-of-events"><i class="fa fa-check"></i><b>2.2.2</b> co-occurrence of events</a></li>
+<li class="chapter" data-level="2.2.3" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html#trace-time-evolution"><i class="fa fa-check"></i><b>2.2.3</b> Trace time evolution</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html#eventlog-trace-inspection-section"><i class="fa fa-check"></i><b>2.3</b> EventLog Trace inspection section:</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="process-discovery-module.html"><a href="process-discovery-module.html"><i class="fa fa-check"></i><b>3</b> Process Discovery Module:</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="process-discovery-module.html"><a href="process-discovery-module.html#pminshiny-careflow-module"><i class="fa fa-check"></i><b>3.1</b> “pMinShiny: Careflow Module”</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="process-discovery-module.html"><a href="process-discovery-module.html#careflow-miner-section"><i class="fa fa-check"></i><b>3.1.1</b> Careflow miner Section</a></li>
+<li class="chapter" data-level="3.1.2" data-path="process-discovery-module.html"><a href="process-discovery-module.html#probabilistic-careflow-miner-section"><i class="fa fa-check"></i><b>3.1.2</b> “Probabilistic CareFlow Miner” section</a></li>
+<li class="chapter" data-level="3.1.3" data-path="process-discovery-module.html"><a href="process-discovery-module.html#cfm-path-analysis-section"><i class="fa fa-check"></i><b>3.1.3</b> CFM: Path Analysis section</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="process-discovery-module.html"><a href="process-discovery-module.html#pminshiny-fomm-module"><i class="fa fa-check"></i><b>3.2</b> “pMinShiny: FOMM Module”</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="process-discovery-module.html"><a href="process-discovery-module.html#fomm-graph-section"><i class="fa fa-check"></i><b>3.2.1</b> FOMM graph section</a></li>
+<li class="chapter" data-level="3.2.2" data-path="process-discovery-module.html"><a href="process-discovery-module.html#fomm-path-analysis-section"><i class="fa fa-check"></i><b>3.2.2</b> FOMM: Path Analysis section</a></li>
+<li class="chapter" data-level="3.2.3" data-path="process-discovery-module.html"><a href="process-discovery-module.html#fomm-predictive-model-section"><i class="fa fa-check"></i><b>3.2.3</b> FOMM: Predictive model section</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">pMinShiny: user guide</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="process-discovery-module" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Process Discovery Module:<a href="process-discovery-module.html#process-discovery-module" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="pminshiny-careflow-module" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> “pMinShiny: Careflow Module”<a href="process-discovery-module.html#pminshiny-careflow-module" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Carflow Mining module deals with the Process Discovery task. In this module it is possible to generate a process model from the Event Log the user uploads in the first section of the module.</p>
+<p>Again, as seen in the previous chapter, the first step is to load an Event Log and make explicit the matches with ID, DATE, and EVENT.</p>
+<p>Once the Event Log is loaded, it will be possible to access different sections which are dedicated to process discovery.</p>
+<p><img src="images/CFmod_load.PNG" style="width:100.0%" /></p>
+<div id="careflow-miner-section" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Careflow miner Section<a href="process-discovery-module.html#careflow-miner-section" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The first section is the <strong>“Care Flow Miner”</strong> section, which shows care flow graph . This graph is the output of the care flow mining algorithm that is implemented in the <em>pMiner package</em>, of which this section is a graphical extension.</p>
+<p>The user can change the algorithm parameters (<strong>support</strong> and <strong>depth</strong>) by acting on the spcific inputs. In addition, the user is also allowed to act on the type of displayed output .For example, using the appropriate switch it is possible to change the colors of the nodes so that they graphically express the median times required to reach that specific node. By using the other switch it is possible to graph leaf nodes even when the selected depth is lower than the maximum depth.</p>
+<div class="figure">
+<img src="images/CFM_sect1.PNG" style="width:100.0%" alt="" />
+<p class="caption">In this example, the depth parameter was set to 5 and the support to 15. The switches were set to show the medians of the times and the hidden leaves</p>
+</div>
+<p>Using the last switch,which is located at the bottom of the side bar, it is possible to access an additional feature of this section: the visualization of an <strong>inferential CFM graph</strong>. In fact, it is possible, through the appropriate inputs to split the population into two sub-cohorts according to the indicated variable and visualize how the CFM algorithm performs in the two sub-cohorts. The nodes colored in yellow are those for which there are significant differences between the two sub-cohorts.</p>
+<p>It is possible to compare the two sub cohorts in terms of:</p>
+<ul>
+<li>the difference in patients passing through each node;</li>
+<li>the time taken to pass through a node;</li>
+<li>the probability of occurrence of a given future state.</li>
+</ul>
+<div class="figure">
+<img src="images/CFM_sec1_2.PNG" style="width:100.0%" alt="" />
+<p class="caption">In this case, it was chosen to stratify the population based on variable “SEX.” The nodes where there is a significant difference between the two groups (p value&lt; 0.05) are highlighted</p>
+</div>
+</div>
+<div id="probabilistic-careflow-miner-section" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> “Probabilistic CareFlow Miner” section<a href="process-discovery-module.html#probabilistic-careflow-miner-section" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The third section of this module is the “Probabilistic CareFlow Miner” section. This section shows the same graph of the previous section to which is added the information regarding the probability of incurring in a certain future state. In this section the user has to explicit the parameters of the careflow mining algorithm (depth and support) and indicate the future state of interest. It’s also possible to highlighting nodes of interest through the selection of their label in the specific field.</p>
+<div class="figure">
+<img src="images/CFM_sect2.PNG" style="width:100.0%" alt="" />
+<p class="caption">In this case the probability of incurring in a “Subintensive” event is shown.</p>
+</div>
+</div>
+<div id="cfm-path-analysis-section" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> CFM: Path Analysis section<a href="process-discovery-module.html#cfm-path-analysis-section" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The last section of this module allows for <strong>path analysis</strong>. In particular, it is possible to perform and display the results of a Survival analysis (with Kaplan Meier) on the paths the user enters by filling in the input fields in the side bar. The comparisons between pairs of paths are expressed in terms of p-value (Log-rank test) and are shown into a table.
+It is also possible to see the time evolution of a covariate in all the different paths by clicking on the “cov-time” tab and selecting the covariate in the appropriate input that will appear in the side bar. It is necessary to press the “show graph” button to plot the graph.</p>
+<div class="figure">
+<img src="images/CFM_pathan.PNG" style="width:100.0%" alt="" />
+<p class="caption">Survival Analysis over 3 paths: all the paths started with the event “AccessToHospital” node 0, and ended with the event “Discharge” (node 70 for the first path, node 46 for the second path and 34 for the third path)</p>
+</div>
+<p><img src="images/CFM_pathana2.PNG" style="width:100.0%" alt="Time evolution of the covariate “total.bilirubine” over all the paths" />
+In both tabs of the path analysis section, two buttons have been inserted that when clicked allow two panels to be displayed. The first one dedicated to displaying the model graph and the second one containing additional inputs that allow editing the graph in the tab.
+Regarding the survival analysis tab, it is possible to select whether to display the kaplan meiers of all selected paths or some of them.</p>
+<div class="figure">
+<img src="images/popup_CFM.PNG" style="width:100.0%" alt="" />
+<p class="caption">panel for process model visualization</p>
+</div>
+<p>As for the tab detailing the covariates time trend, it is possible to change the plot displaied, by acting on:</p>
+<ul>
+<li>position of the legend;</li>
+<li>time unit;</li>
+<li>toggling the linear regression line;</li>
+<li>toggling the confidence intervals of the mean of the measures over a certain customizable time interval</li>
+</ul>
+<div class="figure">
+<img src="images/popup_CFM2.PNG" style="width:100.0%" alt="" />
+<p class="caption">panel for editing the visualization</p>
+</div>
+</div>
+</div>
+<div id="pminshiny-fomm-module" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> “pMinShiny: FOMM Module”<a href="process-discovery-module.html#pminshiny-fomm-module" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This module deals with process discovery using the First Order Markov Model (FOMM).</p>
+<div id="fomm-graph-section" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> FOMM graph section<a href="process-discovery-module.html#fomm-graph-section" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The first section of the FOMM module shows the process model. The user can change the threshold on the probabilities of the transition from one node to the next, through the use of the appropriate input placed in the side bar. The user can also show or hide the autoloops by pressing the <strong>autoloops</strong> switch.</p>
+<p><em>Please note that also the FOMM module uses the algorithms implemented in the pMineR package (see the FOMM class)</em></p>
+<div class="figure">
+<img src="images/FOMM1.PNG" style="width:100.0%" alt="" />
+<p class="caption">Example of process model computed using FOMM algorithm</p>
+</div>
+</div>
+<div id="fomm-path-analysis-section" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> FOMM: Path Analysis section<a href="process-discovery-module.html#fomm-path-analysis-section" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <strong>path analysis</strong> section it performs the same tasks as the same section in the CFM module (see <a href="process-discovery-module.html#cfm-path-analysis-section">CFM: Path Analysis section</a> ). An example of path analysis is given below:</p>
+<p><img src="images/FOMM_pathKM.PNG" style="width:100.0%" alt="Time evolution of the covariate “total.bilirubine” over all the paths" />
+<img src="images/FOMM_pathCOV.PNG" style="width:100.0%" alt="Example of process model computed using FOMM algorithm" /></p>
+</div>
+<div id="fomm-predictive-model-section" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> FOMM: Predictive model section<a href="process-discovery-module.html#fomm-predictive-model-section" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The last section that makes up the FOMM module is devoted to learning a logistic regression model in order to be able to predict the achievement of a given outcome node from the value of certain patient covariates.</p>
+<p>The user must specify:</p>
+<ul>
+<li>the starting event, at which the values of the covariates will be selected.</li>
+<li>the end node (event goal)</li>
+<li>any node in which it is desired that patients have or have not transited (passing through and not through)</li>
+<li>the minimum and maximum time to reach the end node</li>
+<li>which covariates to use in the learning</li>
+</ul>
+<p>Using the appropriate input, it is possible to specify whether to use all selected covariates in the model or to make a feature selection from them. In addition, it is possible to choose whether to use the cross fold or the hold out technique.</p>
+<p>Once all inputs are set it is possible to compute the logistic model by the Train model button.
+The output shown by this section are:</p>
+<ul>
+<li><p>a matrix containing the covariates used by the model. In the case of feature selection, only the variables that have a p-value above the threshold chosen by the user in the appropriate input (min p-value train) will be shown; the AUC and accuracy values (in the case of cross fold validation, the mean and the standar deviations computed on the different folds are shown).</p></li>
+<li><p>a plot representing the kernel density of AUCs calculated for each fold of the k fold cross validation</p></li>
+<li><p>the ROC curves, test and training, related to a given configuration of covariates (row of the matrix described above)</p></li>
+</ul>
+<p><img src="images/FOMM_PD.PNG" style="width:100.0%" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="descriptive-module-pminshiny-eventlog-visual-analysis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-processDiscoveryMod.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

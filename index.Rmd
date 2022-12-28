@@ -1,0 +1,80 @@
+--- 
+title: "pMinShiny: user guide"
+author: "PM liquid lab"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  This is a minimal example of using the bookdown package to write a book.
+  The HTML output format for this example is bookdown::gitbook,
+  set in the _output.yml file.
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+---
+
+# About
+
+**"pMinShiny"** is a software suite, which aims to provide support in Process Mining analysis in healthcare. 
+
+The suite is divided into several independent modules, which offer support in the various steps of the computational pipeline.
+
+1. **Descriptive Module** dedicated to the descriptive statistics on events. There are both event distribution charts, co-occurrence and trace evolution analysis.
+
+<!-- 2. **Enrichment module**, in which it is possible to enrich the loaded event log with "ancillary" information from other files. This additional information can be either "crossectional" information (sex, age, care centre) or information from time-dependent variables. In order to manage time-depedent variables, two different merge techniques are proposed. -->
+
+2. **CareFlow module** which deals with the actual analysis of the event log, using an implementation of the CareFlow Mining agorithm provided by the *pMineR* package. In addition to the process discovery task, a section dedicated to survival analysis and one dedicated to visual analysis of the evolution of patient covariates along their trace are proposed. 
+
+3. **First order Markov Model module** has the same feature of the CFM module, using the FOMM as process Discovery technique.  
+
+## How to install
+
+```
+library("remotes")
+remotes::install_github("PMLiquidLab/pMinShiny")
+```
+
+Let's start by loading the library 
+
+```
+library(pMinShiny)
+
+```
+
+
+## Visualization of user interfaces
+
+At this point you will be able to view  the modules by running the following instructions from the command line:
+
+- **Descriptive module**
+
+```
+visual.mod()
+```
+
+
+- **Care flow Module**:
+```
+careFlow.mod()
+```
+- **First Order Markov Model Module**:
+```
+FOMM.mod()
+```
+
+<br>
+
+***Useful tips***: in case any errors occur when running the "careflow.mod()" function, please check that the DiagrammeR version installed is at least 1.0.9
+
+
+
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```

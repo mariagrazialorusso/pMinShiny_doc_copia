@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>pMinShiny: user guide</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="pMinShiny: user guide" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="pMinShiny: user guide" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="PM liquid lab" />
+
+
+<meta name="date" content="2022-12-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="descriptive-module-pminshiny-eventlog-visual-analysis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">pMinShiny: a brief user guide</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-install"><i class="fa fa-check"></i><b>1.1</b> How to install</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#visualization-of-user-interfaces"><i class="fa fa-check"></i><b>1.2</b> Visualization of user interfaces</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html"><i class="fa fa-check"></i><b>2</b> Descriptive Module: “pMinShiny: EventLog Visual Analysis”</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html#data-loading-section"><i class="fa fa-check"></i><b>2.1</b> Data Loading section</a></li>
+<li class="chapter" data-level="2.2" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html#eventlog-data-analysis-section"><i class="fa fa-check"></i><b>2.2</b> EventLog Data analysis section</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html#event-distribution"><i class="fa fa-check"></i><b>2.2.1</b> Event distribution</a></li>
+<li class="chapter" data-level="2.2.2" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html#co-occurrence-of-events"><i class="fa fa-check"></i><b>2.2.2</b> co-occurrence of events</a></li>
+<li class="chapter" data-level="2.2.3" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html#trace-time-evolution"><i class="fa fa-check"></i><b>2.2.3</b> Trace time evolution</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="descriptive-module-pminshiny-eventlog-visual-analysis.html"><a href="descriptive-module-pminshiny-eventlog-visual-analysis.html#eventlog-trace-inspection-section"><i class="fa fa-check"></i><b>2.3</b> EventLog Trace inspection section:</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="process-discovery-module.html"><a href="process-discovery-module.html"><i class="fa fa-check"></i><b>3</b> Process Discovery Module:</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="process-discovery-module.html"><a href="process-discovery-module.html#pminshiny-careflow-module"><i class="fa fa-check"></i><b>3.1</b> “pMinShiny: Careflow Module”</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="process-discovery-module.html"><a href="process-discovery-module.html#careflow-miner-section"><i class="fa fa-check"></i><b>3.1.1</b> Careflow miner Section</a></li>
+<li class="chapter" data-level="3.1.2" data-path="process-discovery-module.html"><a href="process-discovery-module.html#probabilistic-careflow-miner-section"><i class="fa fa-check"></i><b>3.1.2</b> “Probabilistic CareFlow Miner” section</a></li>
+<li class="chapter" data-level="3.1.3" data-path="process-discovery-module.html"><a href="process-discovery-module.html#cfm-path-analysis-section"><i class="fa fa-check"></i><b>3.1.3</b> CFM: Path Analysis section</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="process-discovery-module.html"><a href="process-discovery-module.html#pminshiny-fomm-module"><i class="fa fa-check"></i><b>3.2</b> “pMinShiny: FOMM Module”</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="process-discovery-module.html"><a href="process-discovery-module.html#fomm-graph-section"><i class="fa fa-check"></i><b>3.2.1</b> FOMM graph section</a></li>
+<li class="chapter" data-level="3.2.2" data-path="process-discovery-module.html"><a href="process-discovery-module.html#fomm-path-analysis-section"><i class="fa fa-check"></i><b>3.2.2</b> FOMM: Path Analysis section</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">pMinShiny: user guide</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">pMinShiny: user guide</h1>
+<p class="author"><em>PM liquid lab</em></p>
+<p class="date"><em>2022-12-13</em></p>
+</div>
+<div id="about" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> About<a href="index.html#about" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>“pMinShiny”</strong> is a software suite, which aims to provide support in Process Mining analysis in healthcare.</p>
+<p>The suite is divided into several independent modules, which offer support in the various steps of the computational pipeline.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Descriptive Module</strong> dedicated to the descriptive statistics on events. There are both event distribution charts, co-occurrence and trace evolution analysis.</li>
+</ol>
+<!-- 2. **Enrichment module**, in which it is possible to enrich the loaded event log with "ancillary" information from other files. This additional information can be either "crossectional" information (sex, age, care centre) or information from time-dependent variables. In order to manage time-depedent variables, two different merge techniques are proposed. -->
+<ol start="2" style="list-style-type: decimal">
+<li><p><strong>CareFlow module</strong> which deals with the actual analysis of the event log, using an implementation of the CareFlow Mining agorithm provided by the <em>pMineR</em> package. In addition to the process discovery task, a section dedicated to survival analysis and one dedicated to visual analysis of the evolution of patient covariates along their trace are proposed.</p></li>
+<li><p><strong>First order Markov Model module</strong> has the same feature of the CFM module, using the FOMM as process Discovery technique.</p></li>
+</ol>
+<div id="how-to-install" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> How to install<a href="index.html#how-to-install" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>library(&quot;remotes&quot;)
+remotes::install_github(&quot;PMLiquidLab/pMinShiny&quot;)</code></pre>
+<p>Let’s start by loading the library</p>
+<pre><code>library(pMinShiny)
+</code></pre>
+</div>
+<div id="visualization-of-user-interfaces" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Visualization of user interfaces<a href="index.html#visualization-of-user-interfaces" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>At this point you will be able to view the modules by running the following instructions from the command line:</p>
+<ul>
+<li><strong>Descriptive module</strong></li>
+</ul>
+<pre><code>visual.mod()</code></pre>
+<ul>
+<li><strong>Care flow Module</strong>:</li>
+</ul>
+<pre><code>careFlow.mod()</code></pre>
+<ul>
+<li><strong>First Order Markov Model Module</strong>:</li>
+</ul>
+<pre><code>FOMM.mod()</code></pre>
+<p><br></p>
+<p><strong><em>Useful tips</em></strong>: in case any errors occur when running the “careflow.mod()” function, please check that the DiagrammeR version installed is at least 1.0.9</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="descriptive-module-pminshiny-eventlog-visual-analysis.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
